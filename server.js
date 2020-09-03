@@ -12,9 +12,11 @@ app.use(express.json({limit: '50mb'}))
 
 const Users = require('./routes/users');
 const auth = require('./routes/auth')
+const Lugger = require('./routes/lugger')
+
 app.use('/api/users',Users)
 app.use('/api/auth',auth)
-
+app.use('/api/lugger',Lugger)
 
 
 

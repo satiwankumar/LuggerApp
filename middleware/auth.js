@@ -6,8 +6,7 @@ module.exports = async function (req, res, next) {
 
     //Get token from the header
     const token = req.header('x-auth-token');
-    console.log(token)
-    //check if not token
+  
 
     if (!token) {
         return res.status(401).json({ msg: 'No token authorization denied' })
@@ -17,7 +16,7 @@ module.exports = async function (req, res, next) {
     //verify token
     try {
         const decoded = jwt.verify(token, config.get('jwtSecret'))
-       console.log(decoded)
+       
        if(decoded.exp < dateNow.getTime()/1000){
             return  res.status(401).json({ msg: 'Token is expired' })
        }

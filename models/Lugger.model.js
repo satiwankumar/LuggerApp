@@ -8,83 +8,78 @@ const user = require('./User.model');
 const { boolean } = require('joi');
 
 const LuggerSchema = new mongoose.Schema({
-    user:{
-        type:mongoose.Schema.Types.ObjectId,
-        ref : user
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: user
     },
-    from :{
-        type:String,
+    from: {
+        type: String,
+        required: true
+    },
+    to: {
+        type: String,
+        required: true
+    },
+    totalWeight: {
+        type: Number,
+        required: true
+    },
+    remaningWeight: {
+        type: Number,
+        required: true
+    },
+    
+    costPerKg: {
+        type: Number,
+        required: true
+    },
+    description: {
+        type: String,
+        required: true
+    },
+    delivery:{
+        type:Boolean,
+        required:true,
+        default:false
+    },
+    airline: {
+        type: String,
+        required: true
+    },
+    flightNumber: {
+        type: String,
+        required: true
+    },
+    travelDate: {
+        type: Date,
+        required: true
+    },
+    arrivalDate: {
+        type: Date,
+        required: true
+    },
+    turnAroundTime:{
+        type : Number,
         required:true
     },
-    to:{
-        type:String,
-        required:true
-    },
-    totalWeight:{
-        type:number,
-        required:true
-    },
-    remainingWeight:{
-        type:number,
-        required:true
-    },
-    costPerKg:{
-        type:number,
-        required:true
-    },
-    description:{
-        type:String,
-        required:true
-    },
-    flights:[
-        {
-            bookingDate:{
-                type:Date,
-                required:true
-            },
-            from:{
-                type:String,
-                required:true
-            },
-            to:{
-                type:String,
-                required:true
-            },
-            airline:{
-                type:String,
-                required:true
-            },
-            flightNumber:{
-                type:String,
-                required:true
-            },
-            departureDate:{
-                type:Date,
-                required:true
-            },
-            arrivalDate:{
-                type:Date,
-                required:true
-            },
 
-
-        }
-    ] ,
-    reviews:[
+        
+   
+    reviews: [
         {
-            rating:{
-                type:number,
-                required:true
+            rating: {
+                type: Number,
+               
             },
-            message:{
-                type:String,
-                required:true
+            message: {
+                type: String,
+               
             }
         }
     ],
-    adminStatus:{
-        type:boolean,
-        default:false
+    adminStatus: {
+        type: Boolean,
+        default: false
     }
 
 
@@ -97,20 +92,8 @@ const LuggerSchema = new mongoose.Schema({
 
 
 
-function validateLugger(lugger) {
-  const schema = {
-    
-            from: Joi.string(),
-            to: Joi.string(),
-            user : Joi.objectId().required(),
-            luggageWeight : Joi.number().min(0).required()   
-    }
-
-  return Joi.validate(lugger, schema);
-}
 
 
-const Lugger = mongoose.model('Lugger', LuggerSchema);
 
-module.exports.Lugger = Lugger;
-module.exports.validate = validateLugger
+
+module.exports =  Lugger = mongoose.model('Lugger', LuggerSchema);

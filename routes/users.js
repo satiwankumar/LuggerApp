@@ -19,6 +19,58 @@ const { url } = require('../utils')
 
 
 
+router.put('/edit',
+    [
+        auth,
+        [
+            check('firstname', 'firstname is required').not().isEmpty(),
+            check('lastname', 'lastname is required').not().isEmpty()
+        ],
+    ],
+    async (req, res) => {
+
+        const errors = validationResult(req.body);
+        if (!errors.isEmpty()) {
+            res.status(400).json({ errors: errors.array() });
+        }
+
+
+        const {
+            firstname,
+            lastname
+
+        } = req.body;
+
+
+        try {
+
+
+            let user = await User.findOne({ _id: req.user._id })
+            console.log(user)
+            if (!user) {
+                return res
+                    .status(400)
+                    .json({ message: 'User doesnot exist' });
+            }
+            user.firstname = firstname
+            user.lastname = lastname,
+                await user.save();
+            res.status(200).json({
+                "user": (_.pick(user, ['id', 'firstname', 'lastname', 'email', 'image']))
+
+            })
+        } catch (error) {
+            console.error(error.message);
+            res.status(500).send('server Error');
+        }
+    }
+);
+
+
+
+
+
+
 
 
 router.put('/edit',

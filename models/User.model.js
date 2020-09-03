@@ -1,7 +1,8 @@
 const Joi = require('joi');
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken')
-const config = require('config')
+const config = require('config');
+const { date } = require('joi');
 
 const UserSchema = new mongoose.Schema({
     image:
@@ -56,7 +57,7 @@ UserSchema.set('timestamps', true)
 UserSchema.methods.generateAuthToken = function () {
     const token = jwt.sign({
         _id: this._id, isAdmin: this.isAdmin 
-     },config.get('jwtSecret'),{expiresIn : 120});
+     },config.get('jwtSecret'),{expiresIn :  '24h' });
     return token;
 }
 
