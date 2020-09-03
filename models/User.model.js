@@ -56,7 +56,7 @@ UserSchema.set('timestamps', true)
 UserSchema.methods.generateAuthToken = function () {
     const token = jwt.sign({
         _id: this._id, isAdmin: this.isAdmin 
-     },config.get('jwtSecret'),{expiresIn : 1});
+     },config.get('jwtSecret'),{expiresIn : 120});
     return token;
 }
 
