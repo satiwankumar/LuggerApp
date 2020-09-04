@@ -11,12 +11,19 @@ connectDB()
 app.use(express.json({limit: '50mb'}))
 
 const Users = require('./routes/users');
-const auth = require('./routes/auth')
+const Auth = require('./routes/auth')
 const Lugger = require('./routes/lugger')
+const Contact = require('./routes/contact')
+const Request = require('./routes/requests')
+const Review = require('./routes/review')
 
 app.use('/api/users',Users)
-app.use('/api/auth',auth)
+app.use('/api/auth',Auth)
 app.use('/api/lugger',Lugger)
+app.use('/api/request',Request)
+app.use('/api/contact',Contact)
+app.use('/api/review',Review)
+
 
 
 

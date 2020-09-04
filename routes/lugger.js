@@ -92,11 +92,38 @@ router.post(
 
 
 
-//get all users travel
+//get all RegisteredLuggers
 
   router.get('/', auth, async (req, res) => {
     try {
       let lugger = await Lugger.find({ user: req.user._id }).populate(
+        'user',
+        ['firstname', 'lastname','email']
+      );
+  
+      if (!lugger) {
+        return res
+          .status(400)
+          .json({ msg: 'There is not travel info for this user' });
+      }
+      res.json(lugger);
+    } catch (error) {
+      console.error(error.message);
+      res.status(500).send('server Error');
+    }
+  });
+
+  //get all approvedLuggers
+
+  router.get('/approved', auth, async (req, res) => {
+      res.send('/approved')
+  });
+
+// getLuggerDetailByID 
+
+  router.get('/:id', auth, async (req, res) => {
+    try {
+      let lugger = await Lugger.find({ _id: req.params.id }).populate(
         'user',
         ['firstname', 'lastname','email']
       );
@@ -133,7 +160,7 @@ router.post(
         ['firstname', 'lastname','email']
       );
   
-      if (!lugger.length) {
+      if (!lugger.length ) {
         return res
           .status(400)
           .json({ msg: 'no tavel exist' });

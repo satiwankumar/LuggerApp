@@ -5,9 +5,15 @@ const config = require('config')
 const { v4: uuidv4 } = require('uuid');
 
 const user = require('./User.model');
-const { boolean } = require('joi');
+
 
 const LuggerSchema = new mongoose.Schema({
+    //  _id: {
+    //     type: String,
+    //      default: function genUUID() {
+    //           uuidv4()
+        
+    //   }},
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: user
