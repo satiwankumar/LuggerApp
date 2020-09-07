@@ -30,7 +30,7 @@ const LuggerSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    remaningWeight: {
+    remainingWeight: {
         type: Number,
         required: true
     },

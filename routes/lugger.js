@@ -41,7 +41,7 @@ router.post(
         costPerKg,
         description,
         turnAroundTime,
-        remaningWeight,
+        remainingWeight,
         airline,
         flightNumber,
         travelDate,
@@ -57,7 +57,7 @@ router.post(
       if (from) LuggerFeilds.from = from;
       if (to) LuggerFeilds.to = to;
       if (totalWeight) LuggerFeilds.totalWeight = totalWeight;
-      if (remaningWeight) LuggerFeilds.remaningWeight = remaningWeight;
+      if (remainingWeight) LuggerFeilds.remainingWeight = remainingWeight;
       if (costPerKg) LuggerFeilds.costPerKg = costPerKg;
       if (description) LuggerFeilds.description = description;
       if (airline) LuggerFeilds.airline = airline;
@@ -172,3 +172,4 @@ router.post(
     }
   });
   module.exports = router
+
