@@ -69,7 +69,18 @@ router.post(
       
     
   
-      //build social object
+      //check if record already exist 
+      
+
+
+    let lugger = await Lugger.find({from:from,to:to,travelDate:travelDate,arrivalDate:arrivalDate})
+
+    if (lugger.length ) {
+      return res
+        .status(400)
+        .json({ "message": "lugger already exist " });
+    }
+  
       
      
   
@@ -115,30 +126,12 @@ router.post(
 
   //get all approvedLuggers
 
-  router.get('/approved', auth, async (req, res) => {
-      res.send('/approved')
-  });
+  // router.get('/approved', auth, async (req, res) => {
+  //     res.send('/approved')
+  // });
 
 // getLuggerDetailByID 
 
-  router.get('/:id', auth, async (req, res) => {
-    try {
-      let lugger = await Lugger.find({ _id: req.params.id }).populate(
-        'user',
-        ['firstname', 'lastname','email']
-      );
-  
-      if (!lugger) {
-        return res
-          .status(400)
-          .json({ msg: 'There is not travel info for this user' });
-      }
-      res.json(lugger);
-    } catch (error) {
-      console.error(error.message);
-      res.status(500).send('server Error');
-    }
-  });
 
 
   //find all user by (from to UggageWeight  TravelDate)
@@ -166,6 +159,29 @@ router.post(
           .json({ msg: 'no tavel exist' });
       }
       res.json({"lugger":lugger});
+    } catch (error) {
+      console.error(error.message);
+      res.status(500).send('server Error');
+    }
+  });
+
+
+
+
+  
+  router.get('/:id', auth, async (req, res) => {
+    try {
+      let lugger = await Lugger.find({ _id: req.params.id }).populate(
+        'user',
+        ['firstname', 'lastname','email']
+      );
+  
+      if (!lugger) {
+        return res
+          .status(400)
+          .json({ msg: 'There is not travel info for this user' });
+      }
+      res.json(lugger);
     } catch (error) {
       console.error(error.message);
       res.status(500).send('server Error');
