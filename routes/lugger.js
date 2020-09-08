@@ -120,14 +120,14 @@ router.post(
       res.json(lugger);
     } catch (error) {
       console.error(error.message);
-      res.status(500).send('server Error');
+      res.status(500).json({"error":error.message});
     }
   });
 
   //get all approvedLuggers
 
   // router.get('/approved', auth, async (req, res) => {
-  //     res.send('/approved')
+  //     res.json('/approved')
   // });
 
 // getLuggerDetailByID 
@@ -158,10 +158,10 @@ router.post(
           .status(400)
           .json({ msg: 'no tavel exist' });
       }
-      res.json({"lugger":lugger});
+      return res.json({"lugger":lugger});
     } catch (error) {
       console.error(error.message);
-      res.status(500).send('server Error');
+     return  res.status(500).json({"error":error.message});
     }
   });
 
@@ -184,7 +184,7 @@ router.post(
       res.json(lugger);
     } catch (error) {
       console.error(error.message);
-      res.status(500).send('server Error');
+      res.status(500).json({"error":error.message});
     }
   });
   module.exports = router

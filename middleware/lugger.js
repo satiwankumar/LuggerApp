@@ -40,6 +40,11 @@ module.exports = async function (req, res, next) {
       if (request.lugger.user != req.user._id) {
         return res.status(401).json({ msg: 'authorization denied' });
       }
+      if(req.params.status ==4 && req.user !==req.user._id){
+        console.log("true")
+        return res.status(401).json({ msg: 'not authorized to end request ' });
+      }
+
       next();
     }
   } catch (error) {

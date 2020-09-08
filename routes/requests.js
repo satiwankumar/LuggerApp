@@ -127,13 +127,6 @@ router.post('/status/:status', [auth, lugger], async (req, res) => {
     console.log(request.luggageWeight, lugger.remainingWeight);
 
 
-    if (request.luggageWeight > lugger.remainingWeight) {
-      return res.status(500).json({
-        "message":
-          'Cannot Accept this Request Beacause luggageWeight is more than remainingWeight of lugger',
-      });
-    }
-
     if (req.params.status == 1 && request.status == 1) {
       return res.json({ "message": 'You  have already Approved this request' });
     }
@@ -148,6 +141,14 @@ router.post('/status/:status', [auth, lugger], async (req, res) => {
     // request.status = req.params.status;
     // await request.save();
     if (req.params.status == 1) {
+      
+
+    if (request.luggageWeight > lugger.remainingWeight) {
+      return res.status(500).json({
+        "message":
+          'Cannot Accept this Request Beacause luggageWeight is more than remainingWeight of lugger',
+      });
+    }
       lugger.remainingWeight = lugger.remainingWeight - request.luggageWeight;
       request.status = req.params.status;
 
@@ -155,12 +156,26 @@ router.post('/status/:status', [auth, lugger], async (req, res) => {
       await lugger.save();
       return res.status(200).json({ message: 'You request has been approved' });
     }
-    // else if (req.params.status == 2) {
-    //   return res.status(200).json({ request: 'you request has been rejected' });
-    // }
-    // else if (req.params.status == 3) {
-    //     return res.status(200).json({ request: 'Request marked as Delivered' });
-    //   }
+    else if (req.params.status == 2) {
+      request.status = req.params.status;
+
+      await request.save();
+      return res.status(200).json({ request: 'you request has been rejected' });
+    }
+    else if (req.params.status == 3) {
+      request.status = req.params.status;
+
+      await request.save();
+        return res.status(200).json({ request: 'Request marked as Delivered' });
+    }
+    else if (req.params.status == 4) {
+      request.status = req.params.status;
+
+      await request.save();
+        return res.status(200).json({ request: 'Requested Job is Ended' });
+    }
+    
+      
   } catch (error) {
     console.error(error.message);
     res.status(500).send('server Error');
