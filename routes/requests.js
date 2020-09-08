@@ -140,10 +140,10 @@ router.post('/status/:status', [auth, lugger], async (req, res) => {
 
     // request.status = req.params.status;
     // await request.save();
-    if (req.params.status == 1) {
+    if (req.params.status == 1 && request.status == 0 ) {
       
 
-    if (request.luggageWeight > lugger.remainingWeight) {
+    if (request.luggageWeight > lugger.remainingWeight && request.status == 0 ) {
       return res.status(500).json({
         "message":
           'Cannot Accept this Request Beacause luggageWeight is more than remainingWeight of lugger',
@@ -156,23 +156,25 @@ router.post('/status/:status', [auth, lugger], async (req, res) => {
       await lugger.save();
       return res.status(200).json({ message: 'You request has been approved' });
     }
-    else if (req.params.status == 2) {
+    else if (req.params.status == 2 && request.status == 0) {
       request.status = req.params.status;
 
       await request.save();
       return res.status(200).json({ request: 'you request has been rejected' });
     }
-    else if (req.params.status == 3) {
+    else if (req.params.status == 3 && request.status == 1) {
       request.status = req.params.status;
 
       await request.save();
         return res.status(200).json({ request: 'Request marked as Delivered' });
     }
-    else if (req.params.status == 4) {
+    else if (req.params.status == 4 && request.status ==3) {
       request.status = req.params.status;
 
       await request.save();
         return res.status(200).json({ request: 'Requested Job is Ended' });
+    }else{
+      return res.status(500).json({ "message": 'Invalid status' })
     }
     
       

@@ -124,7 +124,7 @@ router.post("/login/forgot", check('email', 'Email is required').isEmail(), asyn
             return res.status(500).json({ message: err.message });
         }
         if (!user)
-            return res.status(400).json({ message: "This email is not valid." });
+            return res.status(400).json({ message: "Invalid credentials." });
 
 
 
