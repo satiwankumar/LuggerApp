@@ -26,7 +26,7 @@ module.exports = async function (req, res, next) {
       let request = await Request.findOne({
         _id: req.body.requestId,
       }).populate('lugger');
-    //   console.log(request);
+      //   console.log(request);
 
       if (!request) {
         return res
@@ -35,13 +35,17 @@ module.exports = async function (req, res, next) {
       }
 
       // console.log(lugger)
-    //   console.log(request.lugger.user, req.user._id);
+      //   console.log(request.lugger.user, req.user._id);
 
-      if (request.lugger.user != req.user._id) {
+      if (
+        req.params.status == 1 ||
+        req.params.status == 2 ||
+        (req.params.status == 3 && request.lugger.user != req.user._id)
+      ) {
         return res.status(401).json({ msg: 'authorization denied' });
       }
-      if(req.params.status ==4 && req.user !==req.user._id){
-        console.log("true")
+      if (req.params.status == 4 && req.user !== req.user._id) {
+        console.log('true');
         return res.status(401).json({ msg: 'not authorized to end request ' });
       }
 

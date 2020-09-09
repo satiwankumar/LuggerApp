@@ -73,7 +73,7 @@ router.post(
       
 
 
-    let lugger = await Lugger.find({from:from,to:to,travelDate:travelDate,arrivalDate:arrivalDate})
+    let lugger = await Lugger.find({from:from,to:to,travelDate:travelDate,arrivalDate:arrivalDate,user:req.user._id})
 
     if (lugger.length ) {
       return res
@@ -112,7 +112,7 @@ router.post(
         ['firstname', 'lastname','email']
       );
   
-      if (!lugger) {
+      if (!lugger.length) {
         return res
           .status(400)
           .json({ msg: 'There is not travel info for this user' });
