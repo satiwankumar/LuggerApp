@@ -2,11 +2,15 @@ const express = require('express')
 const path = require('path')
 const app = express();
 const connectDB= require('./config/db')
+var cors = require('cors');
 require('dotenv').config()
+
+
 
 //connect Database
 connectDB()
 //Init middleware
+app.use(cors())
 
 app.use(express.json({limit: '50mb'}))
 
@@ -16,6 +20,7 @@ const Lugger = require('./routes/lugger')
 const Contact = require('./routes/contact')
 const Request = require('./routes/requests')
 const Review = require('./routes/review')
+const Report = require('./routes/report')
 
 app.use('/api/users',Users)
 app.use('/api/auth',Auth)
@@ -23,13 +28,17 @@ app.use('/api/lugger',Lugger)
 app.use('/api/request',Request)
 app.use('/api/contact',Contact)
 app.use('/api/review',Review)
+app.use('/api/report',Report)
 
 
 
 
 
 app.get("/uploads/images/:name", (req, res) => {
-    console.log(req.params.name)
+ 
+    // const myURL  = new URL(req.url)
+    // console.log(myURL.host);
+
     res.sendFile(path.join(__dirname, `./uploads/images/${req.params.name}`));
   });
 

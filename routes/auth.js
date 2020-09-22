@@ -3,9 +3,12 @@ const router = express.Router();
 const bcrypt = require('bcrypt')
 const { check, validationResult } = require('express-validator')
 const moment = require("moment");
+const _ = require('lodash')
+
 moment().format();
 const jwt = require('jsonwebtoken')
 
+const { baseUrl } = require('../utils/url');
 
 
 const auth = require('../middleware/auth')
@@ -16,18 +19,25 @@ const { sendEmail } = require('../service/email')
 
 
 
-//@route Get api/users
+//@route Get api/auth
 //@desc Test route
 //access Public
 
 
-
 router.get('/', auth, async (req, res) => {
     try {
-
-        const user = await User.findById(req.user.id).select('-password')
-        console.log(user)
-        res.json(user)
+        console.log(req.user)
+        let user = await User.findOne({ _id: req.user._id })
+        
+        
+if (!user) {
+    return res
+        .status(400)
+        .json({ message: 'User doesnot exist' });
+}
+const url =   baseUrl(req)  
+user.image = `${url}${user.image}`
+res.status(200).json(user)
     } catch (error) {
         console.error(error.message)
         res.status(500).json({ "error": error.message })
@@ -53,6 +63,8 @@ router.post(
         ).exists(),
     ],
     async (req, res) => {
+        let error = []
+
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() });
@@ -61,20 +73,29 @@ router.post(
         try {
             console.log(req.body);
             const { email, password } = req.body;
-
+         
             //see if user exists
             let user = await User.findOne({ email });
-
-            if (!user) { return res.status(400).json({ "error": "Invalid Credentials" }); }
+            
+            if (!user) { 
+               error.push({msg : "Invalid Credentials"})
+                return res.status(400).json({ errors : error }); }
 
             const validpassword = await bcrypt.compare(password, user.password)
-            if (!validpassword) return res.status(400).json({ "error": "Invalid Credentials" });
+            if (!validpassword) 
+            {
+                error.push({msg : "Invalid Credentials"})
+                return   res.status(400).json({ errors : error });
+
+            }
+            
 
 
 
+            
 
 
-
+          
             const token = user.generateAuthToken()
             let session = await Session.findOne({ user: user.id });
             console.log(session)
@@ -95,14 +116,17 @@ router.post(
             await session.save()
             res.status(200).json({
                 "message": "Log in Successfull",
-                data: {
+                
                     "token": token
-                }
+            
             })
 
         } catch (err) {
 
-            res.status(500).json({ "error": err.message });
+           
+            const errors =[]
+            errors.push({msg : err.message}) 
+            res.status(500).json({ errors: errors });
         }
 
         //return json webtoken
@@ -114,102 +138,124 @@ router.post(
 //access public 
 
 router.post("/login/forgot", check('email', 'Email is required').isEmail(), async (req, res) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-        return res.status(400).json({ errors: errors.array() });
-    }
 
-    User.findOne({ email: req.body.email }, async function (err, user) {
-        if (err) {
-            return res.status(500).json({ message: err.message });
+    try {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).json({ errors: errors.array() });
         }
-        if (!user)
-            return res.status(400).json({ message: "Invalid credentials." });
-
-
-
-
-        let code = Math.floor(100000 + Math.random() * 900000);
-
-
-
-        let token = await Token.findOne({ email: user.email });
-        if (token) { token.remove(); }
-
-
-        let newtoken = new Token({
-            email: user.email,
-            token: code
-        });
-        newtoken.save(function (err) {
+    
+        User.findOne({ email: req.body.email }, async function (err, user) {
             if (err) {
-                return res.status(500).json({ "error": err.message });
+                return res.status(500).json({ message: err.message });
             }
-
-            // user.passwordResetToken = token.token;
-            // user.passwordResetExpires = moment().add(12, "hours");
-
-
-            user.resetCode = code
-            // user.passwordResetExpires = moment().add(1, "hours");
-
-
-
-            user.save(async function (err) {
-                if (err) {
-                    return res.status(500).json({ message: err.message });
-                }
-
-                let resp = await sendEmail(user.email, code)
-
-                return res.status(200).json({ message: 'password recovery code successfully sent to email.' });
-
-
-
-
+            if (!user)
+                return res.status(400).json({ message: "Invalid credentials." });
+    
+    
+    
+    
+            let code = Math.floor(100000 + Math.random() * 900000);
+    
+    
+    
+            let token = await Token.findOne({ email: user.email });
+            if (token) { token.remove(); }
+    
+    
+            let newtoken = new Token({
+                email: user.email,
+                token: code
             });
-
+            newtoken.save(function (err) {
+                if (err) {
+                    return res.status(500).json({ "error": err.message });
+                }
+    
+                // user.passwordResetToken = token.token;
+                // user.passwordResetExpires = moment().add(12, "hours");
+    
+    
+                user.resetCode = code
+                // user.passwordResetExpires = moment().add(1, "hours");
+    
+    
+    
+                user.save(async function (err) {
+                    if (err) {
+                        return res.status(500).json({ message: err.message });
+                    }
+    
+                    let resp = await sendEmail(user.email, code)
+    
+                    return res.status(200).json({ message: 'password recovery code successfully sent to email.' });
+    
+    
+    
+    
+                });
+    
+            });
         });
-    });
-
-});
-
+    
+    
+    
+        
+    } catch (err) {
+        
+        const errors =[]
+        errors.push({msg : err.message}) 
+        res.status(500).json({ errors: errors });
+    }
+})
+   
 
 
 //post    /api/auth/login/verifyCode/
 //access private
 
 
-router.post("/login/verifycode", check('resetCode', 'Code is Required').isNumeric().isLength({ max: 6 }), (req, res) => {
-    // Validate password Input
-    const errors = validationResult(req);
+router.post("/login/verifycode", check('resetCode', 'Code is Required'), (req, res) => {
 
-    if (!errors.isEmpty()) {
-        return res.status(400).json({ errors: errors.array() });
+    let error = []
+      const  errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).json({ errors: errors.array() });
+        }
+    
+    try {
+     
+    
+        // Find a matching token
+        Token.findOne({ token: req.body.resetCode }, function (err, token) {
+            console.log(token)
+            if (err) {
+                error.push({msg:err.message})
+                return res.status(500).json({ errors: error });
+            }
+            if (!token){
+            error.push({msg:"This code is not valid. OR Your code may have expired."})
+            return res.status(400).json({ errors: error });
+}
+            
+    
+            if (token) {
+    
+                return res.status(200).json({
+                    message: "Code verified successfully, please set your new password "
+                });
+            }
+    
+    
+        });
+    } catch (err) {
+        
+        const errors =[]
+        errors.push({msg : err.message}) 
+        res.status(500).json({ errors: errors });
     }
-
-
-    // Find a matching token
-    Token.findOne({ token: req.body.resetCode }, function (err, token) {
-        if (err) {
-            return res.status(500).json({ message: err.message });
-        }
-        if (!token)
-            return res.status(400).json({
-                message: "This code is not valid. OR Your code may have expired."
-            });
-
-        if (token) {
-
-
-
-            return res.status(200).json({
-                message: "Code verified successfully, please set your new password "
-            });
-        }
-
-
-    });
+    // Validate password Input
+   
 });
 
 //post    /api/auth/login/reset/
@@ -285,9 +331,9 @@ router.post(
     [auth,
         [
 
-            check('currentpassword', 'currentPassword is required').not().isEmpty(),
-            check('newpassword', 'newpassword is required').not().isEmpty(),
-            check('confirmpassword', 'confirmpassword is required').not().isEmpty()
+            check('currentpassword', 'current Password is required').not().isEmpty(),
+            check('newpassword', 'New Password is required').not().isEmpty(),
+            check('confirmpassword', 'Confirm password is required').not().isEmpty()
 
         ]],
     async (req, res) => {
@@ -297,16 +343,24 @@ router.post(
         }
 
         try {
+            let error =[]
             console.log(req.body);
             const { currentpassword, newpassword, confirmpassword } = req.body;
 
+            // console.log(req.user)
             //see if user exists
-            let user = await User.findOne({ id: req.user.id });
-            if (!user) { return res.status(400).json({ "error": "Invalid Credentials" }); }
+            let user = await User.findOne({ _id: req.user._id });
+          console.log(user)
+            if (!user) { return res.status(400).json({ "error": "user doesnot exist" }); }
 
             //if password matches
             const validpassword = await bcrypt.compare(currentpassword, user.password)
-            if (!validpassword) return res.status(400).json({ "error": "Invalid Credentials" });
+            if (!validpassword) 
+            {
+                error.push({msg : "Invalid Credentials"})
+                return   res.status(400).json({ errors : error });
+
+            }
 
             //if currrent password and new password matches
             if (currentpassword === newpassword) {

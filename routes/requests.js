@@ -5,6 +5,8 @@ const lugger = require('../middleware/lugger');
 
 const Request = require('../models/Requests.model');
 const Lugger = require('../models/Lugger.model');
+const {baseUrl}= require('../utils/url')
+
 // const ContactModel = require('../models/Contact.model');
 const router = express.Router();
 
@@ -58,8 +60,11 @@ router.post(
         images,
         additionalNote,
       });
+      // const lugger = new lugger.receivedRequests.userId = req.user._id
+       await lugger.save()
+       await newRequest.save();
+      
 
-      const result = await newRequest.save();
       // console.log(result);
       return res.status(200).json({
         code: 200,
@@ -76,18 +81,43 @@ router.post(
 
 router.get('/getrequests', auth, async (req, res) => {
   try {
-    let request = await Request.find({ user: req.user._id }).populate('user', [
+    let requests = await Request.find({ user: req.user._id }).populate(
+      'user', [
       'firstname',
       'lastname',
       'email',
-    ]);
+      'image'
+    ]
+  ).populate('lugger',[
+        
+        "costPerKg",
+        "airline",
+        "flightNumber",
+        "travelDate",
+        "arrivalDate",
+    ]
+  )
 
-    if (!request.length) {
+    if (!requests.length) {
       return res
         .status(400)
         .json({ msg: 'There is no request info for  user' });
     }
-    res.status(200).json({ request: request });
+
+    const url =   baseUrl(req)  
+
+
+    var unique = [];
+  // var distinct = [];
+  for( let i = 0; i < requests.length; i++ ){
+    if( !unique[requests[i].user.image]){
+         requests[i].user.image = `${url}${requests[i].user.image}`
+      unique[requests[i].user.image] = 1;
+    }
+  }
+  
+
+    res.status(200).json({ request: requests });
   } catch (error) {
     console.error(error.message);
     res.status(500).send('server Error');
@@ -98,16 +128,38 @@ router.get('/getrequests', auth, async (req, res) => {
 
 router.get('/gettravelrequests', [auth, lugger], async (req, res) => {
   try {
-    let request = await Request.find({
+    let requests = await Request.find({
       lugger: req.body.luggerId,
-    }).populate('user', ['firstname', 'lastname', 'email']);
+    }).populate('user', ['firstname', 'lastname', 'email','image']);
 
-    if (!request.length) {
+
+
+
+
+
+    if (!requests.length) {
       return res
         .status(400)
         .json({ msg: 'There is no request info for this lugger' });
     }
-    res.status(200).json({ request: request });
+
+
+    const url =   baseUrl(req)  
+
+
+    var unique = [];
+  // var distinct = [];
+  for( let i = 0; i < requests.length; i++ ){
+    if( !unique[requests[i].user.image]){
+         requests[i].user.image = `${url}${requests[i].user.image}`
+      unique[requests[i].user.image] = 1;
+    }
+  }
+  
+  
+
+
+    res.status(200).json({ request: requests });
   } catch (error) {
     console.error(error.message);
     res.status(500).send('server Error');
@@ -132,10 +184,10 @@ router.post('/status/:status', [auth, lugger], async (req, res) => {
     }
 
     if (req.params.status == 2 && request.status == 2) {
-      return res.json({ "message": 'You have already Rejected this request' });
+      return res.json({ message: 'You have already Rejected this request' });
     }
     if (req.params.status == 3 && request.status == 3) {
-      return res.json({ "message": 'You have already marked this delivered' });
+      return res.json({ "message": 'You have already ended this job ' });
     }
 
     // request.status = req.params.status;
@@ -160,21 +212,18 @@ router.post('/status/:status', [auth, lugger], async (req, res) => {
       request.status = req.params.status;
 
       await request.save();
-      return res.status(200).json({ request: 'you request has been rejected' });
+      return res.status(200).json({ message: 'you request has been rejected' });
     }
-    else if (req.params.status == 3 && request.status == 1) {
+   
+    else if (req.params.status == 3 && request.status ==1) {
       request.status = req.params.status;
 
       await request.save();
-        return res.status(200).json({ request: 'Request marked as Delivered' });
+        return res.status(200).json({ message: 'Requested Job is Ended' });
     }
-    else if (req.params.status == 4 && request.status ==3) {
-      request.status = req.params.status;
-
-      await request.save();
-        return res.status(200).json({ request: 'Requested Job is Ended' });
-    }else{
-      return res.status(500).json({ "message": 'Invalid status' })
+    
+    else{
+      return res.status(500).json({ message: 'Invalid status' })
     }
     
       

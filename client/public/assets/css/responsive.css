@@ -1,0 +1,770 @@
+
+@media (min-width:320px) and (max-width:767px){
+
+
+
+    .profile-drp-down li {
+        float: none !important;
+    }
+
+    ul.pagination {
+        margin: 10px 10px 0 0 !important;
+    }
+        .adv-app-detail .img-box.mr-3{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+
+    .home .box {
+        margin: 0 10px 10px 10px;
+        width: 95% !important;
+    }
+
+    .h-right-sec .review-sec .media {
+        padding: 10px;
+    }
+
+    .h-right-sec .white-side {
+        margin: 30px 10px 0;
+    }
+    .advisor-profile-main .top .right {
+            float: left !important;
+        }
+
+        #DataTables_Table_0_filter label:after {
+
+            right: -5px;
+        }
+
+        .dataTables_filter input {
+        width: 250px !important;
+
+    }
+
+    div#DataTables_Table_0_filter {
+        margin: auto !important;
+    }
+    .modal-dialog.modal-lgg.conf {
+        width: 350px;
+    }
+
+    .register-main .form-main {
+        padding: 30px 0 0;
+    }
+
+    .register-main .fields {
+        padding: 40px 0 0;
+    }
+
+    .navbar-container.content.header-top {
+        margin-left: 0 !important;
+        top: unset;
+        position: unset;
+    }
+
+    .header-top ul.nav.navbar-nav.float-right {
+        align-items: center;
+        flex-direction: column-reverse !important;
+        width: 100%;
+        padding: 0px 0 10px;
+    }
+
+    .header-top .schedule-text a {
+        margin: 8px auto 0px !important;
+    }
+
+    .header-top  .dropdown .dropdown-menu {
+        top: 140px !important;
+    }
+
+    .header-top ul.dropdown-menu.dropdown-menu-media.dropdown-menu-right.show {
+        top: 180px !important;
+    }
+
+    .navbar-header ul.nav.navbar-nav.flex-row {
+        margin: 30px 0 0;
+    }
+
+    .navbar-light .navbar-nav li {
+        line-height: 1;
+        float: left;
+    }
+
+    .header-navbar .navbar-container ul.nav li a.nav-link-label {
+        padding: 2.6rem 0rem 1rem 0.8rem;
+    }
+
+        .header-navbar .nav-item + .nav-item {
+        margin: 10px 0 0;
+        float: right;
+    }
+
+
+    body.vertical-layout.vertical-menu .navbar .navbar-brand {
+        white-space: nowrap;
+        margin: 0;
+    }
+
+    .header-top li.call-text {
+        text-align: center;
+    }
+
+    .header-bottom-nav li {
+        display: block;
+        padding: 0 30px;
+        text-align: center;
+    }
+
+    .header-banner img {
+        width: 100%;
+        height: 100px;
+    }
+
+    .header-banner h2 {
+        font-size: 30px;
+    }
+
+    .user h1 {
+        float: none;
+        text-align: center;
+        line-height: 33px;
+    }
+
+    .user h1 a {
+        float: left;
+        width: auto;
+        margin: 0;
+    }
+
+    .footer-bottom .copyright {
+        padding: 15px 0 10px;
+    }
+
+    .footer-bottom .copyright p {
+        text-align: center;
+    }
+
+    .footer-bottom .social ul{
+        margin: 10px auto 15px;
+        float: none;
+        display: table;
+    }
+
+    .footer-bottom .social ul li {
+        padding: 0 5px;
+    }
+
+    .footer-sec {
+        padding: 80px 0 50px;
+        background: linear-gradient(90deg, rgba(95,49,113,1) 0%, rgba(131,86,155,1) 40%, rgba(127,95,168,1) 100%);
+    }
+
+
+    div#DataTables_Table_0_filter {
+        margin: 0;
+    }
+
+    div.dataTables_wrapper div.dataTables_paginate ul.pagination {
+        justify-content: center;
+        margin: 10px auto 0 !important;
+    }
+
+    .advisor-card-main {
+        padding: 0 0 20px;
+    }
+
+    .app-detail .admin-profile .modal .modal-dialog.modal-lgg.conf {
+        max-width: 350px;
+    }
+
+   .user .payment-modal-inner {
+        padding: 20px !important;
+        margin: 0;
+    }
+
+    .app-request button {
+        margin: auto;
+        display: table;
+    }
+
+    .ask-question.app-request.app-detail .col-lg-6.col-xl-6.col-sm-12.mt-3 {
+        margin: 30px 0 0 !important;
+    }
+
+    .ask-question.app-request h3 {
+        margin: 0 auto;
+        float: none;
+        display: table;
+    }
+
+    .contact-admin label {
+        color: #999999;
+        font-weight: 500;
+    }
+
+    .contact-admin .contact-info-main {
+        padding: 30px 0 0px;
+    }
+
+    .contact-info li:before {
+        margin: 0 8px 0 0;
+    }
+
+    .contact-info li a {
+        font-size: 14px;
+    }
+
+    .user-detail-t .user-detail-head {
+        flex-direction: column;
+    }
+
+    .user-detail-t.add-user h1 {
+        font-size: 23px;
+        margin: 0px 0 10px !important;
+    }
+
+    .ask-now-sec .col-12.d-flex.justify-content-between.align-items-center {
+        padding: 15px 30px;
+    }
+
+    .ask-now-sec h2 {
+        font-size: 20px;
+        width: 100%;
+    }
+
+    .current-app .media i {
+        margin: 0 auto 5px !important;
+        display: table;
+    }
+
+    .current-app .c100 {
+        margin: 0 auto 0 !important;
+    }
+
+    .current-app .top .media h4 {
+        font-size: 18px;
+        margin: 10px 0 !important;
+    }
+
+    .current-app .media.media-body.mt-3 {
+        margin-top: 20px !important;
+    }
+
+    .current-app .top .media img {
+        margin: auto;
+    }
+
+    .payment-d .top .media img {
+        width: 100px;
+        height: 100px;
+        margin: 0 auto 0 auto;
+    }
+
+    .payment-d .bottom h2 {
+        margin: 30px 0 0 0;
+    }
+
+    .all-advisors ul.pagination {
+        margin: 0 auto 30px !important;
+    }
+
+    .adv-app-detail .payment-d .top .media {
+        margin: 20px 0 0 0;
+        display: block;
+    }
+
+    .adv-app-detail .ask-now-sec .time-left-info-inner a, .h-right-sec a {
+        padding: 5px 0;
+        margin: 0 0 0 5px;
+    }
+    .adv-app-detail .current-app .top .media img {
+        margin: auto;
+        display: table;
+    }
+
+    .adv-app-detail .current-app .media i {
+        margin: 0 0 10px !important;
+        display: table;
+    }
+
+    .adv-app-detail .current-app .top .media .img-box.mr-3{
+        margin: 0 !important;
+    }
+
+
+
+    .adv-pay-det .payment-d .top .media {
+        margin: 20px 0 0 0;
+        display: flex;
+        text-align: left;
+    }
+
+    .adv-pay-det .current-app .media i {
+        margin: 0 10px 10px 0 !important;
+    }
+
+    .adv-pay-det .current-app .top .media h4 {
+        font-size: 18px;
+        margin: 0px 0 10px !important;
+    }
+
+    .adv-pay-det .box {
+        margin: 0 10px 0;
+        width: 100% !important;
+    }
+
+    .c-app-det-row{
+        margin: 0;
+    }
+
+    .adv-app-detail .time-left-info-inner, .h-right-sec .time-left-info-inner {
+        flex-direction: column;
+    }
+
+    .adv-app-detail .payment-d .top .time-left-info-inner h2, .h-right-sec .time-left-info-inner h2 {
+        margin: 10px 0;
+    }
+
+    .adv-app-detail .ask-now-sec .time-left-info-inner a, .h-right-sec a {
+        padding: 5px 0;
+        margin: 0 0 20px;
+    }
+
+    .user.home h2 {
+        margin: 0 0 0 10px !important;
+    }
+
+    .home .card.rounded.profile-card {
+        margin: 0 10px 30px !important;
+    }
+
+}
+
+@media (min-width:320px) and (max-width:480px){
+
+    .adv-app-detail .current-app .media i {
+        margin: 0 auto 10px !important;
+        display: table;
+    }
+
+    .adv-app-detail .current-app .top .media .top-info h3 {
+        font-weight: 500;
+        text-align: center;
+    }
+
+    .adv-pay-det .current-app .media i {
+        margin: 0 10px 0px 0 !important;
+        display: table;
+    }
+
+    .home .adv-pay-det h4{
+        margin: 20px 0px 0px 10px;
+        font-size: 15px;
+    }
+
+    .home .adv-pay-det h5 {
+        margin: 10px 0px 20px 10px;
+        font-size: 15px;
+    }
+
+    .pay-status.d-flex.justify-content-between.mt-3 {
+        flex-direction: column;
+    }
+
+
+
+
+    .adv-app-detail .time-left-info-inner, .h-right-sec .time-left-info-inner {
+        flex-direction: column;
+    }
+
+    .adv-app-detail .payment-d .top .time-left-info-inner h2, .h-right-sec .time-left-info-inner h2 {
+        margin: 10px 0;
+    }
+
+    .adv-app-detail .ask-now-sec .time-left-info-inner a, .h-right-sec a {
+        padding: 5px 0;
+        margin: 0 0 20px;
+    }
+
+.noti-content .media {
+    flex-direction: column;
+    align-items: flex-start !important;
+}
+
+.all-notifications .noti-content {
+    padding: 30px 30px;
+}
+
+.all-notifications .noti-content p {
+    font-size: 16px;
+    margin: 0 0 20px;
+}
+.all-notifications .noti-content i {
+
+    margin: 0 20px 20px 0 !important;
+}
+
+.all-notifications .notification-title {
+    padding: 20px 30px;
+}
+
+
+}
+
+@media (min-width:768px) and (max-width:991px){
+
+.header-navbar .navbar-container ul.nav li > a.menu-toggle {
+    padding: 1.9rem 0.4rem 0.8rem 0.4rem;
+}
+
+.dropdown-toggle::after {
+    padding: 0 10px 0 0;
+    margin: 0 0 0 -5px !important;
+}
+
+    .header-navbar .navbar-container ul.nav li a.nav-link-label {
+    padding: 1.9rem 0rem 1rem 0.8rem;
+}
+
+
+    .adv-app-detail .time-left-info-inner, .h-right-sec .time-left-info-inner {
+    flex-direction: column;
+}
+
+.adv-app-detail .payment-d .top .time-left-info-inner h2, .h-right-sec .time-left-info-inner h2 {
+    margin: 10px 0;
+}
+
+.adv-app-detail .ask-now-sec .time-left-info-inner a, .h-right-sec a {
+    padding: 5px 0;
+    margin: 0 0 20px;
+}
+    .home .adv-pay-det h4 {
+    font-size: 16px;
+
+}
+
+    .adv-app-detail .img-box.mr-3{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 !important;
+}
+
+    .adv-pay-det .current-app .top .media h4 {
+    font-size: 15px;
+}
+
+    .adv-app-detail .payment-d .top .media {
+        margin: 20px 0 0 0;
+        display: block;
+    }
+
+    .adv-app-detail .ask-now-sec .time-left-info-inner a, .h-right-sec a {
+        padding: 5px 0;
+        margin: 0 0 0 5px;
+    }
+    .adv-app-detail .current-app .top .media img {
+        margin: auto;
+        display: table;
+    }
+
+
+
+
+    .advisor-profile-main .top .right {
+        float: left !important;
+    }
+
+    .dropdown .dropdown-menu {
+    transition: none !important;
+    top: 65px;
+    right: 0 !important;
+}
+.dropdown-notification ul.dropdown-menu.dropdown-menu-media.dropdown-menu-right.show {
+    transition: none !important;
+    top: 90px;
+    right: 140px !important;
+}
+
+    .dataTables_filter input {
+        width: 250px !important;
+    }
+    .footer-sec {
+        padding: 80px 0 50px;
+        background: linear-gradient(90deg, rgba(95,49,113,1) 0%, rgba(131,86,155,1) 40%, rgba(127,95,168,1) 100%);
+    }
+
+    .header-bottom-nav li {
+        padding: 0 6px;
+    }
+
+    .header-bottom-nav li a {
+        font-size: 13px;
+    }
+
+    body.vertical-layout.vertical-menu.menu-expanded .navbar .navbar-header {
+        float: left;
+        width: 150px;
+        height: 5.5rem;
+    }
+
+    .navbar-header ul.nav.navbar-nav.flex-row {
+        width: 100%;
+    }
+
+    .navbar-brand img.brand-logo {
+        width: auto;
+        margin: 0 0 0 10px;
+    }
+
+    body.vertical-layout.vertical-menu.menu-expanded .navbar .navbar-container {
+        margin-left: 140px;
+    }
+
+    body.vertical-layout.vertical-menu .navbar .navbar-brand {
+        margin: -10px 0 0 0;
+    }
+
+    .header-top .call-text h2 {
+        font-size: 15px;
+        margin: 0 5px 5px;
+    }
+
+    .header-top .call-text h2 span {
+        font-size: 9px;
+    }
+
+    .header-top .schedule-text a {
+        font-size: 12px;
+        padding: 10px;
+        margin: auto 5px;
+    }
+
+    .header-top ul li:nth-of-type(3) a {
+        margin: 0 10px 0 10px;
+    }
+
+
+    .user h1 {
+        width: 100%;
+        margin: auto;
+    }
+
+    .sc-app .top {
+        margin: 0;
+    }
+
+    .white-side {
+        margin: 0 0 50px;
+    }
+
+    .contact-admin .contact-info-main {
+        padding: 0 0 30px;
+    }
+
+    .ask-question.app-request h3 {
+        display: table;
+        margin: auto;
+        float: none;
+    }
+
+    .app-request button {
+        display: table;
+        margin: 0 auto 0 !important;
+    }
+
+    .ask-question.app-request.app-detail {
+        padding: 0 0 30px;
+    }
+
+    .app-request tbody {
+        display: table;
+        margin: auto;
+    }
+
+    .app-request .middle .left {
+        width: 100%;
+    }
+
+    .app-request .middle .left h2 {
+
+        text-align: center;
+    }
+
+
+    .app-detail .left, .sc-app .left {
+        text-align: center;
+        padding: 20px 0;
+    }
+
+    .all-advisors ul.pagination {
+        margin: 0 auto 30px !important;
+    }
+
+    .adv-detail .sc-app .bottom h4 {
+        text-align: center;
+    }
+
+    .adv-detail .sc-app .bottom p {
+        text-align: center;
+    }
+
+
+    .adv-detail .bottom {
+        margin: 0;
+        text-align: center;
+    }
+
+.h-right-sec .white-side {
+    margin: 30px 0 0;
+}
+}
+
+@media (min-width:992px) and (max-width:1199px){
+
+.header-navbar .navbar-container ul.nav li > a.menu-toggle {
+    padding: 1.9rem 0.4rem 0.8rem 0.4rem;
+    margin-top: -1px;
+}
+
+    .current-app .top .media h4 {
+    font-size: 15px;
+}
+
+
+.h-right-sec .time-left-info-inner {
+    justify-content: flex-start;
+}
+
+.h-right-sec .time-left-info-inner h2 {
+    margin: 0 10px 0;
+}
+
+.h-right-sec .white-side {
+    margin: 30px 0 0;
+}
+
+
+   .dropdown .dropdown-menu {
+    transition: none !important;
+    top: 65px;
+    right: 0 !important;
+}
+.dropdown-notification ul.dropdown-menu.dropdown-menu-media.dropdown-menu-right.show {
+    transition: none !important;
+    top: 90px;
+    right: 140px !important;
+}
+
+    .footer-sec {
+        padding: 80px 0 50px;
+        background: linear-gradient(90deg, rgba(95,49,113,1) 0%, rgba(131,86,155,1) 40%, rgba(127,95,168,1) 100%);
+    }
+
+    .header-bottom-nav li {
+        padding: 0 15px;
+    }
+
+    .header-bottom-nav li a {
+        font-size: 15px;
+    }
+
+    body.vertical-layout.vertical-menu.menu-expanded .navbar .navbar-header {
+        float: left;
+        width: 200px;
+        height: 5.5rem;
+    }
+
+    .navbar-header ul.nav.navbar-nav.flex-row {
+        width: 100%;
+    }
+
+       .navbar-brand img.brand-logo {
+        width: auto;
+    }
+
+    body.vertical-layout.vertical-menu.menu-expanded .navbar .navbar-container {
+        margin-left: 140px;
+    }
+
+
+    .header-top .call-text h2 {
+        font-size: 22px;
+        margin: 0 5px 5px;
+    }
+
+    .header-top ul li:nth-of-type(3) a {
+        margin: 0 10px 0 10px;
+    }
+
+    .all-advisors ul.pagination {
+        margin: 0 auto 30px !important;
+    }
+
+    .advisor-card-main .btn-box a {
+        width: 180px;
+    }
+
+    .advisor-profile-main .pad-20 {
+        padding: 20px;
+    }
+
+    .advisor-profile-main .top h2 {
+        margin: 15px 0 10px 0;
+    }
+
+    .advisor-profile-main .top a {
+        margin: 10px 0 0 10px;
+    }
+
+    .adv-app-detail .payment-d .top .media {
+        margin: 20px 0 0 0;
+        display: block;
+    }
+
+    .adv-app-detail .ask-now-sec.current-app.payment-d .top .media{
+        display: flex;
+    }
+
+    .adv-app-detail .ask-now-sec .time-left-info-inner a, .h-right-sec a {
+        padding: 5px 0;
+        margin: 0 0 0 5px;
+    }
+    .adv-app-detail .current-app .top .media img {
+        margin: auto;
+        display: table;
+    }
+
+
+
+
+
+}
+
+@media (min-width:992px) and (max-width:1199px){
+.header-navbar .navbar-container ul.nav li a.nav-link-label {
+    padding: 1.9rem 0rem 1rem 0.8rem;
+}
+
+.dropdown-toggle::after {
+    padding: 0 5px 0 0px;
+    margin: 0 0 0 0 !important;
+}
+}
+@media (min-width:1200px) and (max-width:1500px){
+
+
+    .advisor-profile-main .pad-20 {
+        padding: 20px;
+    }
+
+.current-app .top .media h4 {
+    font-size: 16px;
+}
+
+
+}

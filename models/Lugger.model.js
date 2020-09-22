@@ -68,8 +68,17 @@ const LuggerSchema = new mongoose.Schema({
         type : Number,
         required:true
     },
+     
+    receivedRequests: [
+        {
+            userId:{
+            type: mongoose.Schema.Types.ObjectId,
+            ref: user
+        }
+        }
+    ],
 
-        
+         
    
     reviews: [
         {
@@ -83,10 +92,8 @@ const LuggerSchema = new mongoose.Schema({
             }
         }
     ],
-    adminStatus: {
-        type: Boolean,
-        default: false
-    }
+    status: { type: Number, default: false },
+
 
 
 });

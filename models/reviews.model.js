@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const User = require('./User.model')
-const Lugger = require('../models/Lugger.model');
 
 const reviewSchema = new mongoose.Schema({
 
@@ -18,8 +17,8 @@ const reviewSchema = new mongoose.Schema({
                 ref: User,
                 required:true
             },
-            lugger: { type: mongoose.Schema.Types.ObjectId, 
-                ref: Lugger, required: true },
+            luggerUser: { type: mongoose.Schema.Types.ObjectId, 
+                ref: User, required: true },
 
         }
     

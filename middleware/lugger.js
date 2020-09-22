@@ -8,7 +8,9 @@ module.exports = async function (req, res, next) {
   // const lugger =await Lugger.find({user:req.user._id})
   // console.log(lugger) //jam lugger ahin
   try {
-    if (req.body.luggerId) {
+    if (req.body.luggerId && !req.user.isAdmin ) {
+
+
       let lugger = await Lugger.findOne({ _id: req.body.luggerId });
       // console.log(request)
       if (!lugger) {
@@ -18,9 +20,12 @@ module.exports = async function (req, res, next) {
       }
       console.log(lugger.user, req.user._id);
 
-      if (lugger.user != req.user._id) {
+      if (lugger.user != req.user._id ) {
         return res.status(401).json({ msg: 'authorization denied' });
       }
+
+
+
       next();
     } else if (req.body.requestId) {
       let request = await Request.findOne({
@@ -35,22 +40,23 @@ module.exports = async function (req, res, next) {
       }
 
       // console.log(lugger)
-      //   console.log(request.lugger.user, req.user._id);
-
-      if (
-        req.params.status == 1 ||
-        req.params.status == 2 ||
-        (req.params.status == 3 && request.lugger.user != req.user._id)
-      ) {
+      
+      
+      if (( JSON.stringify(request.lugger.user) !== JSON.stringify(req.user._id)) && (req.params.status == 1 || req.params.status == 2 ))
+       {
         return res.status(401).json({ msg: 'authorization denied' });
       }
-      if (req.params.status == 4 && req.user !== req.user._id) {
-        console.log('true');
+      console.log(req.user._id,request.user._id)
+      if ((req.params.status == 3) &&  (request.user._id != req.user._id)) {
+  
         return res.status(401).json({ msg: 'not authorized to end request ' });
       }
 
       next();
     }
+    else  if(req.user.isAdmin){
+    next();
+  }
   } catch (error) {
     res.status(401).json({ msg: error.message });
   }
