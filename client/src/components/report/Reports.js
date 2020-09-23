@@ -18,14 +18,14 @@ const Reports = ({ getReports, reports: { Reports, loading } }) => {
   const [ReportsPerPage] = useState(5);
       
 
+  const indexOfLastPost = currentPage * ReportsPerPage;
+  const indexOfFirstPost = indexOfLastPost - ReportsPerPage;
+  const currentReports = Reports.slice(indexOfFirstPost, indexOfLastPost);
 
   useEffect(() => {
     getReports();
   }, [getReports]);
 
-  const indexOfLastPost = currentPage * ReportsPerPage;
-  const indexOfFirstPost = indexOfLastPost - ReportsPerPage;
-  const currentReports = Reports.slice(indexOfFirstPost, indexOfLastPost);
 
   const paginate = pageNumber => setCurrentPage(pageNumber);
   return (
@@ -51,10 +51,7 @@ const Reports = ({ getReports, reports: { Reports, loading } }) => {
                             <h1 class="u-m clr-blue ">report</h1>
              
                           </div>
-                           <div class="col-md-12 pull-right">
-                               <a href="a-blocked-users.html" class="primary-button pull-right">Blocked Users</a>
-                           </div>
-                       
+                         
                         </div>
                        
                    

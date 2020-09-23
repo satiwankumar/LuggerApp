@@ -36,10 +36,10 @@ const checkObjectId = require("../middleware/checkobjectId");
 
 
 router.get('/', [auth,admin], async (req, res) => {
-
+    // console.log(req.query)
     try {
         let users = await User.find()
-        console.log(users)
+        // console.log(users)
         if (!users.length) {
             return res
                 .status(400)
@@ -231,7 +231,7 @@ router.post('/uploadpicture', [auth,
         //     return res.status(400).json({ errors: "please upload base64 image format " });
         // }
         let user = await User.findOne({ _id: req.user._id })
-        console.log(user)
+        // console.log(user)
         if (user && user.image !=="") {
             fs.unlinkSync(path.join(__dirname, `../${user.image}`));
             user.image =""
@@ -245,7 +245,7 @@ router.post('/uploadpicture', [auth,
         let pathName = `uploads/images/${r}.png`;
         fs.writeFileSync(path.join(__dirname, `../${pathName}`), buff)
         // var full_address = req.protocol + "://" + req.headers.host ;
-        console.log(url(req, pathName))
+        // console.log(url(req, pathName))
 
         // //create new user
        user.image = pathName
@@ -295,7 +295,7 @@ router.put('/edit',
 
 
             let user = await User.findOne({ _id: req.user._id })
-            console.log(user)
+            // console.log(user)
             if (!user) {
                 return res
                     .status(400)
@@ -328,11 +328,14 @@ router.put('/edit',
 // get user image
 
 
+
+
+
 router.get("/uploads/images/:name", (req, res) => {
  
     // const myURL  = new URL(req.url)
     // console.log(myURL.host);
-console.log(req.headers.host)
+// console.log(req.headers.host)
     res.sendFile(path.join(__dirname, `../uploads/images/${req.params.name}`));
   });
 
@@ -343,6 +346,54 @@ console.log(req.headers.host)
 
 
 
+  router.post('/status/:status', [auth,admin], async (req, res) => {
+      const {status} = req.params
+    //   console.log(status)
+    try {
+      
+      let user = await User.findOne({ _id: req.body.userId });
+            // console.log(user)
+      if (!user)
+       { return res.status(400).json({ msg: 'user doesnot exist ' });}
+    
+  
+       if (status == 1 && user.status == 1 ) {
+        return res.json({ message: 'This user is  already active ' });
+      }
+  
+      else if (status == 0 && user.status == 0) {
+        return res.json({ message: 'This user is already blocked' });
+      }
+   
+  
+   
+      if (  user.status ==0 && status == 1 ) {
+        
+      
+        user.status = status;
+        await user.save();
+        return res.status(200).json({ message: 'User has been Active' });
+      }
+       if (user.status == 1 && status == 0  ) {
+        user.status = status;
+        await user.save();
+        return res.status(200).json({ message:  'User has been blocked' });
+      }
+      
+     
+      else{
+        return res.status(200).json({ message: 'Invalid status' })
+      }
+      
+        
+    } catch (error) {
+    //   console.error(error.message);
+      res.status(500).json({error:error.message});
+    }
+  });
+  
+  
+  
 
 module.exports = router
 

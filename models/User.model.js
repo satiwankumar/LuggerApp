@@ -37,7 +37,7 @@ const UserSchema = new mongoose.Schema({
     // passwordResetToken: { type: String, default: "" },
     // passwordResetExpires: { type: Date, default: Date("2018/06/06") },
     resetCode: {type: Number, default: ""},
-    status: {type: Boolean, default: true},
+    status: {type: Number, default: 1},
     
     isAdmin: {
         type: Boolean,
@@ -58,7 +58,7 @@ UserSchema.set('timestamps', true)
  
 UserSchema.methods.generateAuthToken = function () {
     const token = jwt.sign({
-        _id: this._id, isAdmin: this.isAdmin 
+        _id: this._id, isAdmin: this.isAdmin ,status:this.status
      },config.get('jwtSecret'),{expiresIn :  '24h' });
     return token;
 }

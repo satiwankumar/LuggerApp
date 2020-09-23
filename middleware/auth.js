@@ -11,7 +11,7 @@ module.exports = async function (req, res, next) {
     //verify token
     try {
         const header = req.header('Authorization');
-        console.log(header.split(' ')[1])
+        // console.log(header.split(' ')[1])
     const token  = header.split(' ')[1]
 
     // console.log(token)
@@ -23,10 +23,15 @@ module.exports = async function (req, res, next) {
         
         const decoded = jwt.verify(token, config.get('jwtSecret'))
         req.user = decoded;
-        // console.log(req.user)
+        console.log(req.user)
+
+        // if(req.user.status !==1){
+        //     return res.status(401).json({msg:'You are block please contact Admin to Activate Account'})
+        // }
 
         const sessions =await Session.findOne({user:req.user._id,token:token,status:true})
         if(!sessions) return res.status(401).json({ msg: 'authorization denied' })
+
 
         next();
     } catch (error) {

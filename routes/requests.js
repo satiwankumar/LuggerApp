@@ -119,7 +119,7 @@ router.get('/getrequests', auth, async (req, res) => {
 
     res.status(200).json({ request: requests });
   } catch (error) {
-    console.error(error.message);
+    // console.error(error.message);
     res.status(500).send('server Error');
   }
 });
@@ -161,7 +161,7 @@ router.get('/gettravelrequests', [auth, lugger], async (req, res) => {
 
     res.status(200).json({ request: requests });
   } catch (error) {
-    console.error(error.message);
+    // console.error(error.message);
     res.status(500).send('server Error');
   }
 });
@@ -176,7 +176,7 @@ router.post('/status/:status', [auth, lugger], async (req, res) => {
     if (!request)
       return res.status(400).json({ msg: 'Request doesnot exist ' });
 
-    console.log(request.luggageWeight, lugger.remainingWeight);
+    // console.log(request.luggageWeight, lugger.remainingWeight);
 
 
     if (req.params.status == 1 && request.status == 1) {
@@ -228,7 +228,7 @@ router.post('/status/:status', [auth, lugger], async (req, res) => {
     
       
   } catch (error) {
-    console.error(error.message);
+    // console.error(error.message);
     res.status(500).send('server Error');
   }
 });

@@ -4,7 +4,8 @@ import {
   CLEAR_PROFILE,
   GET_CURRENT_PROFILE,
   UPDATE_PROFILE,
-  GET_USERS
+  GET_USERS,
+  UPDATE_USER_STATUS
 
 } from '../actions/types';
 
@@ -54,7 +55,23 @@ export default function (state = initialState, action) {
         currentProfile:null
         
       };
-    
+  case  UPDATE_USER_STATUS:
+
+    // payload.ID
+
+    const s = {...state}
+
+
+    const idx = s.Users.findIndex(user => user._id === payload.ID );
+          s.Users[idx].status = !s.Users[idx].status
+
+    s.Users.filter(u => u._id !== payload.ID)
+
+
+    return{
+        ...s,
+      loading:false
+    } 
     default:
       return state;
   }

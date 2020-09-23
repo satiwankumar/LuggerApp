@@ -18,7 +18,8 @@ import {
 export const loadUser = () => async dispatch => {
   try {
     const res = await api.get('/auth');
-    console.log(res)
+    // console.log(res)
+
     dispatch({
       type: USER_LOADED,
       payload: res.data
@@ -57,11 +58,11 @@ export const register = formData => async dispatch => {
 // Login User
 export const login = (email, password) => async dispatch => {
   const body = { email, password };
-  console.log(email,password)
+  // console.log(email,password)
 
   try {
     const res = await api.post('/auth/login', body);
-console.log(res)
+// console.log(res)
     dispatch({
       type: LOGIN_SUCCESS,
       payload: res.data
@@ -112,7 +113,7 @@ export const forgotPassword=(email,history)=>async dispatch=>{
 
   try {
       const res = await  api.post('/auth/login/forgot',body)
-      console.log(res)
+      // console.log(res)
       dispatch({
         type: SUCCESS_FORGOTPASSWORD,
         payload: res.data
@@ -174,7 +175,7 @@ export const verifyCode=(resetCode,history)=>async dispatch=>{
 
   try {
       const res = await  api.post('/auth/login/verifycode',body)
-      console.log(res)
+      // console.log(res)
       dispatch({
         type: SUCCESS_VERIFY_CODE,
         payload: resetCode
@@ -205,7 +206,7 @@ export const verifyCode=(resetCode,history)=>async dispatch=>{
       catch (err) {
 
     const errors = err.response.data.errors;
-     console.log(errors)
+    //  console.log(errors)
 
 
     if (errors) {
@@ -236,12 +237,12 @@ export const verifyCode=(resetCode,history)=>async dispatch=>{
 
 export const resetPassword=(newpassword,confirmpassword,resetCode,history)=>async dispatch=>{
  
-    console.log(resetCode)
+    // console.log(resetCode)
   const body = JSON.stringify({newpassword,confirmpassword})
 
   try {
       const res = await  api.post(`/auth/login/reset/${resetCode}`,body)
-      console.log(res)
+      // console.log(res)
       dispatch({
         type: SUCCESS_VERIFY_CODE,
         payload: res.data
@@ -272,7 +273,7 @@ export const resetPassword=(newpassword,confirmpassword,resetCode,history)=>asyn
       catch (err) {
 
     const errors = err.response.data.errors;
-     console.log(errors)
+    //  console.log(errors)
 
 
     if (errors) {
@@ -302,7 +303,7 @@ export const resetPassword=(newpassword,confirmpassword,resetCode,history)=>asyn
 export const logout = ()=>async  dispatch=> {
 
   const res = await  api.get('/auth/logout')
-  console.log(res)
+  // console.log(res)
   dispatch( { type: LOGOUT })
  
   toast.success(`🦄 ${res.data.message}`, {

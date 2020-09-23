@@ -34,7 +34,7 @@ export const getReportById = reportId => async dispatch => {
   
   try {
     const res = await api.get(`/report/${reportId}`);
-      console.log(res)
+      // console.log(res)
     dispatch({
       type: GET_REPORT,
       payload: res.data

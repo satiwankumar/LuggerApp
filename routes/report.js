@@ -55,7 +55,7 @@ router.get('/', [auth,admin], async (req, res) => {
 
     try {
         let reports = await Report.find().populate('reportingUser',['firstname','lastname','email']).populate('reportOn',['firstname','lastname','email'])
-        console.log(reports)
+        // console.log(reports)
         if (!reports.length) {
             return res
                 .status(400)
@@ -90,7 +90,7 @@ router.get('/:report_id',
       
         return res.json(report);
       } catch (err) {
-        console.error(err.message);
+        // console.error(err.message);
         return res.status(500).json({ error: err.message });
       }
     }

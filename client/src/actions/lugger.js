@@ -33,14 +33,14 @@ export const getLuggers = () => async dispatch => {
 
 
 export const UpdateluggerStatus = (luggerId,status,history) => async dispatch => {
-  console.log(luggerId)
+  // console.log(luggerId)
   const body = JSON.stringify({luggerId})
 
 // console.log(body)
 console.log("lugger status update called")
   try {
     const res = await api.post(`/lugger/status/${status}`,body)
-    console.log(res.data)
+    // console.log(res.data)
     dispatch({
       type: UPDATE_LUGGER,
       payload: res.data
@@ -56,20 +56,17 @@ console.log("lugger status update called")
       progress: undefined,
       })
   
-    
+      window.jQuery('#approvalmodal').modal('hide');
 
 
   
-  // history.push(`/lugger`)
-  setTimeout(() => {
-window.location.reload(false);
-    
-  }, 5000);
+  history.push(`/lugger/${luggerId}`)
+
     
  
 
   } catch (err) {
-    console.log(err)
+    // console.log(err)
     dispatch({
       type: Lugger_ERROR,
       // payload: { msg: err.response.statusText, status: err.response.status }
@@ -94,5 +91,9 @@ export const getLuggerById = luggerId => async dispatch => {
     });
   }
 };
+
+
+
+
 
 

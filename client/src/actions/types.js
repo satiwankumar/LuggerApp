@@ -7,7 +7,6 @@ export const AUTH_ERROR = 'AUTH_ERROR';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAIL = 'LOGIN_FAIL';
 export const LOGOUT = 'LOGOUT';
-export const UPDATE_LUGGER = 'UPDATE_LUGGER';
 
 
 
@@ -21,13 +20,13 @@ export const GET_CURRENT_PROFILE = 'GET_CURRENT_PROFILE';
 
 
 export const GET_USERS = 'GET_USERS';
+export const UPDATE_USER_STATUS = 'UPDATE_USER_STATUS';
 
 
 
 
 export const GET_REPORTS = 'GET_REPORTS';
 export const GET_REPORT = 'GET_REPORT';
-
 export const REPORT_ERROR = 'REPORT_ERROR';
 
 
@@ -35,7 +34,9 @@ export const REPORT_ERROR = 'REPORT_ERROR';
 
 export const GET_LUGGERS = 'GET_LUGGERS';
 export const Get_LUGGER_DETAIL = 'Get_LUGGER_DETAIL' 
+export const UPDATE_LUGGER = 'UPDATE_LUGGER';
 export const Lugger_ERROR = 'Lugger_ERROR';
+
 
 
 

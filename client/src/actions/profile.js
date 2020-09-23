@@ -6,6 +6,7 @@ import {
   GET_CURRENT_PROFILE,
   GET_USERS,
   PROFILE_ERROR,
+  UPDATE_USER_STATUS,
   CLEAR_PROFILE
 
 } from './types';
@@ -53,7 +54,7 @@ export const getUserById = userId => async dispatch => {
   
   try {
     const res = await api.get(`/users/${userId}`);
-      console.log(res)
+      // console.log(res)
     dispatch({
       type: GET_PROFILE,
       payload: res.data
@@ -120,163 +121,42 @@ export const updateProfile = (firstname,lastname,history)=> async dispatch=>{
 
 
 
+export const UpdateUserStatus = (userId,status,history) => async dispatch => {
+console.log(userId,status)
+  const body = JSON.stringify({userId})
 
-// Get Github repos
-// export const getGithubRepos = username => async dispatch => {
-//   try {
-//     const res = await api.get(`/profile/github/${username}`);
+  try {
+    const res = await api.post(`/users/status/${status}`,body)
+    // console.log(res.data)
+    dispatch({
+      type: UPDATE_USER_STATUS,
+      payload: { ID: userId }
+    });
+    
+  toast.success(`🦄 ${res.data.message}`, {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      })
+     history.push('/users')
+  
+    
+     window.jQuery('#blockuser').modal('hide');
 
-//     dispatch({
-//       type: GET_REPOS,
-//       payload: res.data
-//     });
-//   } catch (err) {
-//     dispatch({
-//       type: NO_REPOS
-//     });
-//   }
-// };
 
-// // Create or update profile
-// export const createProfile = (
-//   formData,
-//   history,
-//   edit = false
-// ) => async dispatch => {
-//   try {
-//     const res = await api.post('/profile', formData);
+  
+  // history.push(`/lugger`)
+ 
 
-//     dispatch({
-//       type: GET_PROFILE,
-//       payload: res.data
-//     });
-
-//     dispatch(setAlert(edit ? 'Profile Updated' : 'Profile Created', 'success'));
-
-//     if (!edit) {
-//       history.push('/dashboard');
-//     }
-//   } catch (err) {
-//     const errors = err.response.data.errors;
-
-//     if (errors) {
-//       errors.forEach(error => dispatch(setAlert(error.msg, 'danger')));
-//     }
-
-//     dispatch({
-//       type: PROFILE_ERROR,
-//       payload: { msg: err.response.statusText, status: err.response.status }
-//     });
-//   }
-// };
-
-// Add Experience
-// export const addExperience = (formData, history) => async dispatch => {
-//   try {
-//     const res = await api.put('/profile/experience', formData);
-
-//     dispatch({
-//       type: UPDATE_PROFILE,
-//       payload: res.data
-//     });
-
-//     dispatch(setAlert('Experience Added', 'success'));
-
-//     history.push('/dashboard');
-//   } catch (err) {
-//     const errors = err.response.data.errors;
-
-//     if (errors) {
-//       errors.forEach(error => dispatch(setAlert(error.msg, 'danger')));
-//     }
-
-//     dispatch({
-//       type: PROFILE_ERROR,
-//       payload: { msg: err.response.statusText, status: err.response.status }
-//     });
-//   }
-// };
-
-// Add Education
-// export const addEducation = (formData, history) => async dispatch => {
-//   try {
-//     const res = await api.put('/profile/education', formData);
-
-//     dispatch({
-//       type: UPDATE_PROFILE,
-//       payload: res.data
-//     });
-
-//     dispatch(setAlert('Education Added', 'success'));
-
-//     history.push('/dashboard');
-//   } catch (err) {
-//     const errors = err.response.data.errors;
-
-//     if (errors) {
-//       errors.forEach(error => dispatch(setAlert(error.msg, 'danger')));
-//     }
-
-//     dispatch({
-//       type: PROFILE_ERROR,
-//       payload: { msg: err.response.statusText, status: err.response.status }
-//     });
-//   }
-// };
-
-// Delete experience
-// export const deleteExperience = id => async dispatch => {
-//   try {
-//     const res = await api.delete(`/profile/experience/${id}`);
-
-//     dispatch({
-//       type: UPDATE_PROFILE,
-//       payload: res.data
-//     });
-
-//     dispatch(setAlert('Experience Removed', 'success'));
-//   } catch (err) {
-//     dispatch({
-//       type: PROFILE_ERROR,
-//       payload: { msg: err.response.statusText, status: err.response.status }
-//     });
-//   }
-// };
-
-// // Delete education
-// export const deleteEducation = id => async dispatch => {
-//   try {
-//     const res = await api.delete(`/profile/education/${id}`);
-
-//     dispatch({
-//       type: UPDATE_PROFILE,
-//       payload: res.data
-//     });
-
-//     dispatch(setAlert('Education Removed', 'success'));
-//   } catch (err) {
-//     dispatch({
-//       type: PROFILE_ERROR,
-//       payload: { msg: err.response.statusText, status: err.response.status }
-//     });
-//   }
-// };
-
-// // Delete account & profile
-// export const deleteAccount = () => async dispatch => {
-//   if (window.confirm('Are you sure? This can NOT be undone!')) {
-//     try {
-//       await api.delete('/profile');
-
-//       dispatch({ type: CLEAR_PROFILE });
-//       dispatch({ type: ACCOUNT_DELETED });
-
-//       dispatch(setAlert('Your account has been permanently deleted'));
-//     } catch (err) {
-//       dispatch({
-//         type: PROFILE_ERROR,
-//         payload: { msg: err.response.statusText, status: err.response.status }
-//       });
-//     }
-//   }
-// };
+  } catch (err) {
+    console.log(err)
+    dispatch({
+      type: PROFILE_ERROR,
+      // payload: { msg: err.response.statusText, status: err.response.status }
+    });
+  }
+};

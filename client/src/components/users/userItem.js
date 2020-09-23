@@ -1,9 +1,18 @@
-import React from 'react'
+import React, { Fragment, useState } from 'react'
 import {Link} from 'react-router-dom'
-
- const UserItem = ({user,index}) => {
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { UpdateUserStatus } from '../../actions/profile';
+import Spinner from '../layout/Spinner';
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+ const UserItem = ({user,index, blockToggle,selection}) => {
     return (
-    
+    <Fragment>
+      {user === null ? (
+        <Spinner />
+      ) : (
+        <Fragment>
         <tbody>
         <tr>
           <td>{index+1} </td> 
@@ -11,7 +20,7 @@ import {Link} from 'react-router-dom'
           <td>{user.firstname}</td>
           <td>{user.lastname}</td>
           <td>{user.email}</td>
-          <td>{user.status == true?"active":"blocked"}</td>
+          <td>{user.status == 0?"blocked":"active"}</td>
        
 
           <td>
@@ -36,21 +45,88 @@ import {Link} from 'react-router-dom'
                   to={`/users/${user._id}`}                >
                   <i className="fa fa-eye"></i>VIEW{' '}
                 </Link>
-                <a
+               { selection===1?(<a
                   className="dropdown-item"
-                  data-toggle="modal"
-                  href="#blockuser"
+                  onClick={e => blockToggle(user._id,0)}
                 >
-                  <i className="fa fa-ban"></i>Block{' '}
-                </a>
+                  <i className="fa fa-ban"  ></i>Block{' '}
+                </a>):
+              (
+                <a
+                className="dropdown-item"
+                onClick={e => blockToggle(user._id,1)}
+              >
+                <i className="fa fa-ban"  ></i>unBlock{' '}
+              </a>)}
+            
               </div>
             </div>
-          </td>
-        </tr>
-       
+            </td>
+
+      </tr>
+        
      
+    
+     {
+       //</tbody><div
+      //   className="modal fade go-live-2"
+      //   id="confirmmodal"
+      //   tabindex="-1"
+      //   role="dialog"
+      //   aria-labelledby="modelTitleId"
+      //   aria-hidden="true"
+      // >
+      //   <div className="modal-dialog" role="document">
+      //     <div className="modal-content">
+      //       <div className="modal-header">
+      //         <button
+      //           type="button"
+      //           className="close"
+      //           data-dismiss="modal"
+      //           aria-label="Close"
+      //         >
+      //           <i className="fa fa-times-circle"></i>
+      //         </button>
+      //       </div>
+      //       <div className="modal-body">
+      //         <div className="blocked-modal-main-wrapper text-center">
+      //           <div className="img-wrapper text-center">
+      //             <img src="images/blockeduser.png" alt="" />
+      //             <h2>System Message </h2>
+
+      //             <p>User abc has been blocked</p>
+      //           </div>
+      //           <button
+      //             data-dismiss="modal"
+      //             className="cancel-button"
+      //           >
+      //             Got It
+      //           </button>
+      //         </div>
+      //       </div>
+      //     </div>
+      //   </div>
+      // </div>
+     }
       </tbody>
-     
+
+
+      
+      </Fragment>
+    )
+      }
+    </Fragment>
     )
 }
-export default UserItem
+
+UserItem.propTypes = {
+ 
+  UpdateUserStatus:PropTypes.func.isRequired
+  
+
+
+};
+
+
+export default connect(null, {})(UserItem);
+

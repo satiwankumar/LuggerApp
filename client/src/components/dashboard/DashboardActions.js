@@ -92,7 +92,7 @@ const DasboardActions = ({auth:{isAuthenticated,loading,user},logout}) => {
                           <small>
                             <time
                               className="media-meta text-muted"
-                              datetime="2015-06-11T18:29:20+08:00"
+                              dateTime="2015-06-11T18:29:20+08:00"
                             >
                               30 minutes ago
                             </time>
@@ -115,7 +115,7 @@ const DasboardActions = ({auth:{isAuthenticated,loading,user},logout}) => {
                           <small>
                             <time
                               className="media-meta text-muted"
-                              datetime="2015-06-11T18:29:20+08:00"
+                              dateTime="2015-06-11T18:29:20+08:00"
                             >
                               30 minutes ago
                             </time>
@@ -238,7 +238,7 @@ const DasboardActions = ({auth:{isAuthenticated,loading,user},logout}) => {
   
 
 
-<div className="modal fade" id="logoutmodal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+<div className="modal fade" id="logoutmodal" tabIndex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
 <div className="modal-dialog" role="document">
   <div className="modal-content">
           <div className="modal-header">

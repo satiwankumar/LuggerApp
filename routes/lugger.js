@@ -27,7 +27,7 @@ router.get('/', [auth,admin], async (req, res) => {
         'user',
         ['firstname', 'lastname','email','image']
       );
-      console.log(luggers)
+      // console.log(luggers)
       if (!luggers.length) {
           return res
               .status(400)
@@ -79,7 +79,7 @@ router.post(
       if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
       }
-      console.log(req.body);
+      // console.log(req.body);
       const {
         from,
         to,
@@ -140,7 +140,7 @@ router.post(
             "luuger":lugger
         });
       } catch (error) {
-        console.error(error.message);
+        // console.error(error.message);
         res.status(500).json({"error":error.message});
       }
     }
@@ -171,7 +171,7 @@ router.post(
 
 
     } catch (error) {
-      console.error(error.message);
+      // console.error(error.message);
       res.status(500).json({"error":error.message});
     }
   });
@@ -229,7 +229,7 @@ router.post(
 
       return res.json({"luggers":Filtered});
     } catch (error) {
-      console.error(error.message);
+      // console.error(error.message);
      return  res.status(500).json({"error":error.message});
     }
   });
@@ -272,7 +272,7 @@ router.post(
         res.json(lugger);
         
       } catch (error) {
-        console.error(error.message);
+        // console.error(error.message);
         res.status(500).json({"error":error.message});
       }
     });
@@ -377,7 +377,7 @@ router.get('/gettravelrequests', [auth, lugger], async (req, res) => {
 
     res.status(200).json({ request: requests });
   } catch (error) {
-    console.error(error.message);
+    // console.error(error.message);
     res.status(500).send('server Error');
   }
 });
@@ -442,7 +442,7 @@ router.post('/status/:status', [auth,lugger], async (req, res) => {
     
       
   } catch (error) {
-    console.error(error.message);
+    // console.error(error.message);
     res.status(500).json({error:error.message});
   }
 });

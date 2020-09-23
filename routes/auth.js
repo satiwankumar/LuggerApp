@@ -39,7 +39,7 @@ const url =   baseUrl(req)
 user.image = `${url}${user.image}`
 res.status(200).json(user)
     } catch (error) {
-        console.error(error.message)
+        // console.error(error.message)
         res.status(500).json({ "error": error.message })
     }
 
@@ -71,7 +71,6 @@ router.post(
         }
 
         try {
-            console.log(req.body);
             const { email, password } = req.body;
          
             //see if user exists
@@ -98,7 +97,7 @@ router.post(
           
             const token = user.generateAuthToken()
             let session = await Session.findOne({ user: user.id });
-            console.log(session)
+            // console.log(session)
             if (session) {
                 session.token = token,
                     session.status = true,
@@ -228,7 +227,7 @@ router.post("/login/verifycode", check('resetCode', 'Code is Required'), (req, r
     
         // Find a matching token
         Token.findOne({ token: req.body.resetCode }, function (err, token) {
-            console.log(token)
+            // console.log(token)
             if (err) {
                 error.push({msg:err.message})
                 return res.status(500).json({ errors: error });
@@ -344,13 +343,13 @@ router.post(
 
         try {
             let error =[]
-            console.log(req.body);
+            // console.log(req.body);
             const { currentpassword, newpassword, confirmpassword } = req.body;
 
             // console.log(req.user)
             //see if user exists
             let user = await User.findOne({ _id: req.user._id });
-          console.log(user)
+        //   console.log(user)
             if (!user) { return res.status(400).json({ "error": "user doesnot exist" }); }
 
             //if password matches

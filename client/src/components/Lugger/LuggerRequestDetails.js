@@ -193,8 +193,8 @@ const LuggerRequestDetails = ({ getLuggerById,UpdateluggerStatus,lugger:{lugger}
                                                               </div>
                                                               <div className="row mb-2">
                                                                          <div className="col-lg-12">
-                                                                          <button className="cancel-button mr-3" data-toggle="modal" data-target="#approvalmodal" >Approve</button>
-                                                                          <button className="blocked-button"  data-toggle="modal" data-target="#rejectmodal">Reject</button>
+                                                                          <button className={`cancel-button mr-3   ${lugger.status ===0?'':'hidden'}`} disabled={lugger.status===0?'':"disabled" } data-toggle="modal" data-target="#approvalmodal" >Approve</button>
+                                                                          <button className={`blocked-button      ${lugger.status ===0?'':'hidden'}`}  data-toggle="modal" data-target="#rejectmodal">Reject</button>
                                                                          </div>
                                                               </div>
                                                            
@@ -232,7 +232,7 @@ const LuggerRequestDetails = ({ getLuggerById,UpdateluggerStatus,lugger:{lugger}
                                <img src="images/blockeduser.png" alt=""/>
                                <p className="mb-0">Are you sure you want to Approve?</p>
                            </div>
-                           <a  className="cancel-button go-live-btn" onClick={()=>UpdateluggerStatus(lugger._id,1,history)} > Yes</a>
+                           <a  className="cancel-button go-live-btn" href="#confirmmodal" onClick={()=>UpdateluggerStatus(lugger._id,1,history)} > Yes</a>
                            <Link to={`/lugger/${lugger._id}`} data-dismiss="modal" className="blocked-button"  >No</Link>  
                        </div>
                       </div>
