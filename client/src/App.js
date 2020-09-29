@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, HashRouter , Route, Switch } from 'react-router-dom';
 
 import Routes from './components/routing/Routes';
 import DashboardActions from './components/dashboard/DashboardActions';
@@ -35,7 +35,8 @@ const App = () => {
 
   return (
     <Provider store={store}>
-      <BrowserRouter>
+      {/* <BrowserRouter basename="/lug_react"> */}
+      <HashRouter>
         <Fragment>
         {
           <DashboardActions />
@@ -48,7 +49,8 @@ const App = () => {
             <Route component={Routes} />
           </Switch>
         </Fragment>
-      </BrowserRouter>
+        </HashRouter>
+      {/* </BrowserRouter> */}
     </Provider>
   );
 };

@@ -6,7 +6,7 @@ import {Link} from 'react-router-dom'
     
         <tbody>
         <tr>
-          <td>{index+1} </td> 
+          {/* <td>{index+1} </td>  */}
           <td>{report._id}</td>
 
           <td>{report.reportingUser.firstname +" " +report.reportingUser.lastname  }</td>

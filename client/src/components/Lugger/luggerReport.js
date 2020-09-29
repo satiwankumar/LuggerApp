@@ -100,7 +100,7 @@ const LuggerReport = ({ getLuggers, lugger: { Luggers, loading } }) => {
                                     >
                                       <thead>
                                         <tr role="row">
-                                          <th
+                                          {/* <th
                                             className="sorting_asc"
                                             tabIndex={0}
                                             aria-controls="DataTables_Table_0"
@@ -111,7 +111,7 @@ const LuggerReport = ({ getLuggers, lugger: { Luggers, loading } }) => {
                                             style={{ width: '54px' }}
                                           >
                                             S.no
-                                          </th>
+                                          </th> */}
                                           <th
                                             className="sorting"
                                             tabIndex={0}

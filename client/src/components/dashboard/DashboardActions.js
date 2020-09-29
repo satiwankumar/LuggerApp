@@ -1,6 +1,6 @@
 import React,{Fragment} from 'react';
 import PropTypes from 'prop-types';
-import { Link, Redirect } from 'react-router-dom';
+import { NavLink,Link, Redirect } from 'react-router-dom';
 import {logout} from '../../actions/auth'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
@@ -197,8 +197,8 @@ const DasboardActions = ({auth:{isAuthenticated,loading,user},logout}) => {
           id="main-menu-navigation"
           data-menu="menu-navigation"
         >
-          <li className="nav-item active">
-            <Link to="/dashboard">
+          <li className="nav-item ">
+            <Link  to="/dashboard">
               <i className="fa fa-area-chart" aria-hidden="true"></i>
               <span className="menu-title" data-i18n="">
                 Dashboard

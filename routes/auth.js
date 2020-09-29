@@ -133,6 +133,92 @@ router.post(
 );
 
 
+
+router.post(
+    '/login/admin',
+    [
+
+        check('email', 'Email is required').isEmail(),
+        check(
+            'password',
+            'password is required'
+        ).exists(),
+    ],
+    async (req, res) => {
+        let error = []
+
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).json({ errors: errors.array() });
+        }
+
+        try {
+            const { email, password } = req.body;
+         
+            //see if user exists
+            let user = await User.findOne({ email:email ,isAdmin:true});
+            
+          
+
+            if (!user) { 
+               error.push({msg : "Invalid Credentials"})
+                return res.status(400).json({ errors : error }); }
+
+            const validpassword = await bcrypt.compare(password, user.password)
+            if (!validpassword) 
+            {
+                error.push({msg : "Invalid Credentials"})
+                return   res.status(400).json({ errors : error });
+
+            }
+            
+
+
+
+            
+
+
+          
+            const token = user.generateAuthToken()
+            let session = await Session.findOne({ user: user.id });
+            // console.log(session)
+            if (session) {
+                session.token = token,
+                    session.status = true,
+                    session.deviceId = req.body.deviceId
+            } else {
+
+                session = new Session({
+                    token: token,
+                    user: user.id,
+                    status: true,
+                    deviceId:  req.body.deviceId
+                })
+            }
+
+            await session.save()
+            res.status(200).json({
+                "message": "Log in Successfull",
+                
+                    "token": token
+            
+            })
+
+        } catch (err) {
+
+           
+            const errors =[]
+            errors.push({msg : err.message}) 
+            res.status(500).json({ errors: errors });
+        }
+
+        //return json webtoken
+    }
+);
+
+
+
+
 //Post /api/users/login/forgot
 //access public 
 

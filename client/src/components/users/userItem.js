@@ -16,7 +16,7 @@ import "react-toastify/dist/ReactToastify.css";
         <tbody>
 
         <tr role="row" className="odd">
-            <td className="sorting_1">{index+1}</td>
+            {/* <td className="sorting_1">{index+1}</td> */}
             <td>{user._id}</td>
             <td>{user.firstname}</td>
             <td>{user.lastname}</td>

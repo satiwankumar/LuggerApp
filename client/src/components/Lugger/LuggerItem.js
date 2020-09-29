@@ -6,7 +6,7 @@ import {Link } from 'react-router-dom'
     
       <tbody>
       <tr>
-          <td>{index+1} </td> 
+          {/* <td>{index+1} </td>  */}
           <td>{lugger.user._id}</td>
         <td>{lugger.user.firstname}</td>
         <td>{lugger.user.lastname}</td>

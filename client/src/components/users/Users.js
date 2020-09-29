@@ -65,7 +65,7 @@ const Users = ({ getUsers, UpdateUserStatus, profile: { Users, loading }, histor
                               </div>
                               <div className="col-md-12 pull-right">
                                 <a
-                                  href="#"
+                                  href="javascript:void(0)"
                                   className="primary-button pull-right"
                                   
                                   onClick={(e)=>setSelection(Selection==0?1:0)}
@@ -132,7 +132,7 @@ const Users = ({ getUsers, UpdateUserStatus, profile: { Users, loading }, histor
       >
         <thead>
           <tr role="row">
-            <th
+            {/* <th
               className="sorting_asc"
               tabIndex={0}
               aria-controls="DataTables_Table_0"
@@ -143,7 +143,7 @@ const Users = ({ getUsers, UpdateUserStatus, profile: { Users, loading }, histor
               style={{ width: '54px' }}
             >
               S.no
-            </th>
+            </th> */}
             <th
               className="sorting"
               tabIndex={0}
