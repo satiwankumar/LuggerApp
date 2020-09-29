@@ -46,25 +46,19 @@ console.log("lugger status update called")
       payload: res.data
       
     });
-  toast.success(`🦄 ${res.data.message}`, {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
+
+      toast.success(`🦄 ${res.data.message}`, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
       })
-  
-      window.jQuery('#approvalmodal').modal('hide');
-
-
-  
-  history.push(`/lugger/${luggerId}`)
-
-    
- 
-
+      window.jQuery('#approvalmodal, #rejectmodal').modal('hide');
+      window.jQuery('.modal-backdrop').remove();
+      history.push(`/lugger/${luggerId}`)
   } catch (err) {
     // console.log(err)
     dispatch({

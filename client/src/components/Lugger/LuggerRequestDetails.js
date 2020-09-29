@@ -37,7 +37,7 @@ const LuggerRequestDetails = ({ getLuggerById,UpdateluggerStatus,lugger:{lugger}
                             <div className="card-body  card-dashboard">
                               <div className="row">
                                 <div className="col-md-12 col-12">
-                                   
+                              
                                   <h1 className="u-m clr-blue ">
                                    
                                    Lugger Request</h1>

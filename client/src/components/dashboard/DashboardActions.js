@@ -9,6 +9,10 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 const DasboardActions = ({auth:{isAuthenticated,loading,user},logout}) => {
   
+  const toggleMenu = () => {
+    document.querySelector('body').classList.toggle('menu-collapsed')
+  }
+
   const authLinks = (
     <div>
 
@@ -177,6 +181,7 @@ const DasboardActions = ({auth:{isAuthenticated,loading,user},logout}) => {
                 <a
                   className="nav-link nav-menu-main menu-toggle hidden-xs"
                   href="#"
+                  onClick={toggleMenu}
                 >
                   <i className="fa fa-bars"></i>
                 </a>

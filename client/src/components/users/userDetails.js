@@ -36,7 +36,7 @@ import { getUserById } from '../../actions/profile';
                                 <div className="col-md-12 col-12">
                                    
                                   <h1 className="u-m clr-blue ">
-                                    <a href=""> <i className="fa fa-chevron-left"></i>  </a>
+                                    <Link to="/users"> <i className="fa fa-chevron-left"></i>  </Link>
                                     User Detail</h1>
                    
                                 </div>
