@@ -26,14 +26,14 @@ const DasboardActions = ({auth:{isAuthenticated,loading,user},logout}) => {
             </li>
             <li className="nav-item">
               {' '}
-              <a className="navbar-brand" href="dashboard.html">
+              <Link to="/dashboard" className="navbar-brand" >
                 {' '}
                 <img
                   className="brand-logo"
                   alt="stack admin logo"
                   src={`${process.env.PUBLIC_URL}/images/logo.png`}
                 />{' '}
-              </a>{' '}
+              </Link>{' '}
             </li>
             <li className="nav-item d-md-none">
               {' '}
@@ -77,7 +77,7 @@ const DasboardActions = ({auth:{isAuthenticated,loading,user},logout}) => {
                     data-ps-id="cbae8718-1b84-97ac-6bfa-47d792d8ad89"
                   >
                     {' '}
-                    <a href="javascript:void(0)">
+                    <a href="#/">
                       <div className="media">
                         <div className="media-left align-self-center">
                           <i className="fa fa-envelope icon-bg-circle bg-dark"></i>
@@ -100,7 +100,7 @@ const DasboardActions = ({auth:{isAuthenticated,loading,user},logout}) => {
                         </div>
                       </div>
                     </a>{' '}
-                    <a href="javascript:void(0)">
+                    <a href="#/">
                       <div className="media">
                         <div className="media-left align-self-center">
                           <i className="fa fa-envelope icon-bg-circle bg-dark"></i>
@@ -255,7 +255,7 @@ const DasboardActions = ({auth:{isAuthenticated,loading,user},logout}) => {
                <p className="mb-0">Are you sure you want to Logout?</p>
            </div>
 
-           <Link to="/" onClick={()=>Signout()} className="cancel-button">yes</Link>
+           <Link to="/" onClick={()=>  logout()} className="cancel-button">yes</Link>
             <Link to="/dashboard" className="blocked-button">No</Link>
        </div>
       </div>
@@ -267,10 +267,7 @@ const DasboardActions = ({auth:{isAuthenticated,loading,user},logout}) => {
 
 </div>
   )
-  const Signout=()=>{
-    logout()
-  }
-  
+
   return (
     <div>
    

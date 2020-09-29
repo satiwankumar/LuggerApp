@@ -18,7 +18,7 @@ module.exports = async function (req, res, next) {
           .status(401)
           .json({ msg: 'There is no info for this lugger' });
       }
-      console.log(lugger.user, req.user._id);
+      // console.log(lugger.user, req.user._id);
 
       if (lugger.user != req.user._id ) {
         return res.status(401).json({ msg: 'authorization denied' });
@@ -46,7 +46,7 @@ module.exports = async function (req, res, next) {
        {
         return res.status(401).json({ msg: 'authorization denied' });
       }
-      console.log(req.user._id,request.user._id)
+      // console.log(req.user._id,request.user._id)
       if ((req.params.status == 3) &&  (request.user._id != req.user._id)) {
   
         return res.status(401).json({ msg: 'not authorized to end request ' });

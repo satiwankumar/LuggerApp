@@ -70,117 +70,230 @@ const Users = ({ getUsers, UpdateUserStatus, profile: { Users, loading }, histor
                                   
                                   onClick={(e)=>setSelection(Selection==0?1:0)}
                                 >
-                                  Blocked Users
+                                 {Selection==1? "Blocked Users":"Active Users"}
                                 </a>
                               </div>
                             </div>
 
 
-                            { 
-                            // <div className="maain-tabble mt-3 table-responsive">
-                          //     <div id="DataTables_Table_0_wrapper" className="dataTables_wrapper container-fluid dt-bootstrap4 no-footer"><div className="row"><div className="col-sm-12 col-md-6"><div className="dataTables_length" id="DataTables_Table_0_length"><label>Show <select name="DataTables_Table_0_length" aria-controls="DataTables_Table_0" className="form-control form-control-sm"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> entries</label></div></div><div className="col-sm-12 col-md-6"><div id="DataTables_Table_0_filter" className="dataTables_filter"><label>Search:<input spellcheck="true" type="search" className="form-control form-control-sm" placeholder="Search" aria-controls="DataTables_Table_0"/></label></div></div></div><div className="row"><div className="col-sm-12"><table className="table table-striped table-bordered zero-configuration dataTable no-footer" id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info">
-                          //       <thead>
-                          //         <tr role="row">
-                          //           <th className="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="ascending" aria-label="S.no: activate to sort column descending">S.no</th><th className="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="User ID: activate to sort column ascending">User ID</th><th className="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Full Name: activate to sort column ascending">Full Name</th><th className="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Last Name: activate to sort column ascending">Last Name</th><th className="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Email: activate to sort column ascending">Email</th><th className="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending">Status</th><th className="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Action: activate to sort column ascending">Action</th></tr>
-                          //       </thead>
-                          //       <tbody>
 
-                          //       <tr role="row" className="odd">
-                          //   <td className="sorting_1">01</td>
-                          //   <td>001</td>
-                          // <td>Abce</td>
-                          // <td>Abce</td>
-                          // <td>example@mail.com</td>
-                          // <td>Active</td>
-                       
-                          // <td>
-                          //   <div className="btn-group mr-1 mb-1">
-                          //     <button type="button" className="btn  btn-drop-table btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i className="fa fa-ellipsis-v"></i></button>
-                          //     <div className="dropdown-menu" x-placement="bottom-start" >
-                          //       <a className="dropdown-item" href="a-viewuserdetails.html"><i className="fa fa-eye"></i>VIEW </a>
-                          //          <a className="dropdown-item" data-toggle="modal" href="#blockuser"><i className="fa fa-ban"></i>Block </a>
-                                
-                               
-                              
-                          //     </div>
-                          //     </div>
-                          //   </td>
-                          // </tr><tr role="row" className="even">
-                          //   <td className="sorting_1">01</td>
-                          //   <td>001</td>
-                          // <td>Abce</td>
-                          // <td>Abce</td>
-                          // <td>example@mail.com</td>
-                          // <td>Active</td>
-                       
-                          // <td>
-                          //   <div className="btn-group mr-1 mb-1">
-                          //     <button type="button" className="btn  btn-drop-table btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i className="fa fa-ellipsis-v"></i></button>
-                          //     <div className="dropdown-menu" x-placement="bottom-start" >
-                          //       <a className="dropdown-item" href="a-viewuserdetails.html"><i className="fa fa-eye"></i>VIEW </a>
-                          //          <a className="dropdown-item" data-toggle="modal" href="#blockuser"><i className="fa fa-ban"></i>Block </a>
-                                
-                               
-                              
-                          //     </div>
-                          //     </div>
-                          //   </td>
-                          // </tr><tr role="row" className="odd">
-                          //   <td className="sorting_1">01</td>
-                          //   <td>001</td>
-                          // <td>Abce</td>
-                          // <td>Abce</td>
-                          // <td>example@mail.com</td>
-                          // <td>Active</td>
-                       
-                          // <td>
-                          //   <div className="btn-group mr-1 mb-1">
-                          //     <button type="button" className="btn  btn-drop-table btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i className="fa fa-ellipsis-v"></i></button>
-                          //     <div className="dropdown-menu" x-placement="bottom-start" >
-                          //       <a className="dropdown-item" href="a-viewuserdetails.html"><i className="fa fa-eye"></i>VIEW </a>
-                          //          <a className="dropdown-item" data-toggle="modal" href="#blockuser"><i className="fa fa-ban"></i>Block </a>
-                                
-                               
-                              
-                          //     </div>
-                          //     </div>
-                          //   </td>
-                          // </tr></tbody>
-                          //     </table></div></div><div className="row"><div className="col-sm-12 col-md-5"><div className="dataTables_info" id="DataTables_Table_0_info" role="status" aria-live="polite">Showing 1 to 3 of 3 entries</div></div><div className="col-sm-12 col-md-7"><div className="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate"><ul className="pagination"><li className="paginate_button page-item previous disabled" id="DataTables_Table_0_previous"><a href="#" aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0" className="page-link">Previous</a></li><li className="paginate_button page-item active"><a href="#" aria-controls="DataTables_Table_0" data-dt-idx="1" tabindex="0" className="page-link">1</a></li><li className="paginate_button page-item next disabled" id="DataTables_Table_0_next"><a href="#" aria-controls="DataTables_Table_0" data-dt-idx="2" tabindex="0" className="page-link">Next</a></li></ul></div></div></div></div>
-                             
-                          //   </div>
-}
-                            <div className="maain-tabble mt-3 table-responsive">
-                              <table className="table table-striped table-bordered zero-configuration">
-                                <thead>
-                                  <tr>
-                                    <th>S.no</th>
-                                    <th>User ID</th>
-                                    <th>first Name</th>
-                                    <th>Last Name</th>
-                                    <th>Email</th>
-                                    <th>Status</th>
-                                    <th>Action</th>
-                                  </tr>
-                                </thead>
-                                
-                                 {
-                                   Users.length > 0 ? (
-                                    currentUsers.map((user,index) => (
-                                    <UserItem key={user._id} blockToggle={blockToggleUser} user={user} index={index} selection={Selection}/>
-                                  ))
-                                ) : (
-                                  <h4>No User found...</h4>
-                                )
-                              }
-                                                    <Pagination
-                              ItemsPerPage={UsersPerPage}
-                              TotalItems={Users.length}
-                              paginate={paginate}
-                            />
-                              
-                              </table>
-                            </div>
+<div className="maain-tabble mt-3 table-responsive">
+<div
+  id="DataTables_Table_0_wrapper"
+  className="dataTables_wrapper container-fluid dt-bootstrap4 no-footer"
+>
+  <div className="row">
+    <div className="col-sm-12 col-md-6">
+      <div
+        className="dataTables_length"
+        id="DataTables_Table_0_length"
+      >
+        <label>
+          Show{' '}
+          <select
+            name="DataTables_Table_0_length"
+            aria-controls="DataTables_Table_0"
+            className="form-control form-control-sm"
+          >
+            <option value={10}>10</option>
+            <option value={25}>25</option>
+            <option value={50}>50</option>
+            <option value={100}>100</option>
+          </select>{' '}
+          entries
+        </label>
+      </div>
+    </div>
+    <div className="col-sm-12 col-md-6">
+      <div
+        id="DataTables_Table_0_filter"
+        className="dataTables_filter"
+      >
+        <label>
+          Search:
+          <input
+            spellCheck="true"
+            type="search"
+            className="form-control form-control-sm"
+            placeholder="Search"
+            aria-controls="DataTables_Table_0"
+          />
+        </label>
+      </div>
+    </div>
+  </div>
+  <div className="row">
+    <div className="col-sm-12">
+      <table
+        className="table table-striped table-bordered zero-configuration dataTable no-footer"
+        id="DataTables_Table_0"
+        role="grid"
+        aria-describedby="DataTables_Table_0_info"
+      >
+        <thead>
+          <tr role="row">
+            <th
+              className="sorting_asc"
+              tabIndex={0}
+              aria-controls="DataTables_Table_0"
+              rowSpan={1}
+              colSpan={1}
+              aria-sort="ascending"
+              aria-label="S.no: activate to sort column descending"
+              style={{ width: '54px' }}
+            >
+              S.no
+            </th>
+            <th
+              className="sorting"
+              tabIndex={0}
+              aria-controls="DataTables_Table_0"
+              rowSpan={1}
+              colSpan={1}
+              aria-label="User ID: activate to sort column ascending"
+              style={{ width: '78px' }}
+            >
+              User ID
+            </th>
+            <th
+              className="sorting"
+              tabIndex={0}
+              aria-controls="DataTables_Table_0"
+              rowSpan={1}
+              colSpan={1}
+              aria-label="Full Name: activate to sort column ascending"
+              style={{ width: '107.6px' }}
+            >
+              Full Name
+            </th>
+            <th
+              className="sorting"
+              tabIndex={0}
+              aria-controls="DataTables_Table_0"
+              rowSpan={1}
+              colSpan={1}
+              aria-label="Last Name: activate to sort column ascending"
+              style={{ width: '110px' }}
+            >
+              Last Name
+            </th>
+            <th
+              className="sorting"
+              tabIndex={0}
+              aria-controls="DataTables_Table_0"
+              rowSpan={1}
+              colSpan={1}
+              aria-label="Email: activate to sort column ascending"
+              style={{ width: '154.8px' }}
+            >
+              Email
+            </th>
+            <th
+              className="sorting"
+              tabIndex={0}
+              aria-controls="DataTables_Table_0"
+              rowSpan={1}
+              colSpan={1}
+              aria-label="Status: activate to sort column ascending"
+              style={{ width: '78px' }}
+            >
+              Status
+            </th>
+            <th
+              className="sorting"
+              tabIndex={0}
+              aria-controls="DataTables_Table_0"
+              rowSpan={1}
+              colSpan={1}
+              aria-label="Action: activate to sort column ascending"
+              style={{ width: '78px' }}
+            >
+              Action
+            </th>
+          </tr>
+        </thead>
+        {
+          Users.length > 0 ? (
+           currentUsers.map((user,index) => (
+           <UserItem key={user._id} blockToggle={blockToggleUser} user={user} index={index} selection={Selection}/>
+         ))
+       ) : (
+         <h4>No User found...</h4>
+       )
+     }
+                           <Pagination
+     ItemsPerPage={UsersPerPage}
+     TotalItems={Users.length}
+     paginate={paginate}
+   />
+      </table>
+    </div>
+  </div>
+  <div className="row">
+    <div className="col-sm-12 col-md-5">
+      <div
+        className="dataTables_info"
+        id="DataTables_Table_0_info"
+        role="status"
+        aria-live="polite"
+      >
+        Showing 1 to 3 of 3 entries
+      </div>
+    </div>
+    <div className="col-sm-12 col-md-7">
+      <div
+        className="dataTables_paginate paging_simple_numbers"
+        id="DataTables_Table_0_paginate"
+      >
+        <ul className="pagination">
+          <li
+            className="paginate_button page-item previous disabled"
+            id="DataTables_Table_0_previous"
+          >
+            <a
+              href="#"
+              aria-controls="DataTables_Table_0"
+              data-dt-idx={0}
+              tabIndex={0}
+              className="page-link"
+            >
+              Previous
+            </a>
+          </li>
+          <li className="paginate_button page-item active">
+            <a
+              href="#"
+              aria-controls="DataTables_Table_0"
+              data-dt-idx={1}
+              tabIndex={0}
+              className="page-link"
+            >
+              1
+            </a>
+          </li>
+          <li
+            className="paginate_button page-item next disabled"
+            id="DataTables_Table_0_next"
+          >
+            <a
+              href="#"
+              aria-controls="DataTables_Table_0"
+              data-dt-idx={2}
+              tabIndex={0}
+              className="page-link"
+            >
+              Next
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+                           
                           </div>
                         </div>
                       </div>
@@ -244,6 +357,7 @@ const Users = ({ getUsers, UpdateUserStatus, profile: { Users, loading }, histor
             
           </div>
         </Fragment>
+        
       )}
     </Fragment>
   );
@@ -252,7 +366,7 @@ const Users = ({ getUsers, UpdateUserStatus, profile: { Users, loading }, histor
 Users.propTypes = {
   getUsers: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired,
-  UpdateluggerStatus:PropTypes.func.isRequired,
+  // UpdateluggerStatus:PropTypes.func.isRequired,
   UpdateUserStatus:PropTypes.func.isRequired
 
 

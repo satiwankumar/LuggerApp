@@ -106,7 +106,7 @@ import { getCurrentProfile,updateProfile } from '../../actions/profile';
                                                                            <div className="left-part">
                                                                              <div className="d-flex">
                                                                                  <div className="user-left">
-                                                                                     <img src="images/userprofileimg.png" alt="" className="profileimg"/>
+                                                                                 <img src={currentProfile.user.image} height="100" width="100" style={{borderRadius:50}}   alt="" className="profileimg"/>
                                                                                  </div>
                                                                                  <div className="right-sec-user align-self-center">
                                                                                         <h6>{firstname +" "+lastname}</h6>

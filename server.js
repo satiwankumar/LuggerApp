@@ -21,6 +21,8 @@ const Contact = require('./routes/contact')
 const Request = require('./routes/requests')
 const Review = require('./routes/review')
 const Report = require('./routes/report')
+const Notifications = require('./routes/notifications')
+
 
 app.use('/api/users',Users)
 app.use('/api/auth',Auth)
@@ -29,7 +31,7 @@ app.use('/api/request',Request)
 app.use('/api/contact',Contact)
 app.use('/api/review',Review)
 app.use('/api/report',Report)
-
+app.use('/api/notifications',Notifications)
 
 
 

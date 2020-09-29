@@ -27,6 +27,8 @@ router.get('/', [auth,admin], async (req, res) => {
         'user',
         ['firstname', 'lastname','email','image']
       );
+
+
       // console.log(luggers)
       if (!luggers.length) {
           return res

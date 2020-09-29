@@ -304,8 +304,8 @@ export const logout = ()=>async  dispatch=> {
 
   const res = await  api.get('/auth/logout')
   // console.log(res)
+  window.jQuery('#logoutmodal').modal('hide');
   dispatch( { type: LOGOUT })
- 
   toast.success(`🦄 ${res.data.message}`, {
     position: "top-right",
     autoClose: 5000,
@@ -317,6 +317,7 @@ export const logout = ()=>async  dispatch=> {
     })
 
  
+    
 
 
 }

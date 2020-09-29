@@ -9,7 +9,7 @@ const Pagination = ({ ItemsPerPage, TotalItems, paginate }) => {
   }
 
   return (
-    <nav>
+  <tbody>
       <ul className='pagination'>
     {
     pageNumbers.map(number => (
@@ -21,7 +21,7 @@ const Pagination = ({ ItemsPerPage, TotalItems, paginate }) => {
         ))
     }
       </ul>
-    </nav>
+      </tbody>
   );
 };
 

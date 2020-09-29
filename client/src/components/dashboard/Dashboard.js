@@ -2,6 +2,72 @@ import React,{useEffect, Fragment, useState} from 'react'
 import {Link,withRouter} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
+import { Bar } from "react-chartjs-2";
+const data = {
+  labels: ['Jan', 'Feb', 'Mar', 'April', 'May' ,'june' ,'july','august','september','october','november','december'],
+  datasets: [
+    {
+      label: 'No of Requests',
+      data: [3, 2, 2, 6, 4,5,4,5,4,8,4,6,4],
+      borderColor: [
+        'rgba(0, 0, 0, 0.7)',
+        'rgba(0, 0, 0, 0.7)'
+        
+],
+      backgroundColor: [
+        'rgba(51, 51, 51)',
+       ' rgb(75,0,130)',
+       'rgba(51, 51, 51)',
+       ' rgb(75,0,130)',
+       'rgba(51, 51, 51)',
+       ' rgb(75,0,130)',
+       'rgba(51, 51, 51)',
+       ' rgb(75,0,130)',
+       'rgba(51, 51, 51)',
+       ' rgb(75,0,130)',
+       'rgba(51, 51, 51)',
+       ' rgb(75,0,130)'
+        
+      ]
+    }
+    // {
+    //   label: '',
+    //   data: [4, 3, 2, 2, 3],
+    //   borderColor: [
+    //     'rgba(54, 162, 235, 0.2)',
+    //     'rgba(54, 162, 235, 0.2)',
+    //     'rgba(54, 162, 235, 0.2)',
+    //     'rgba(54, 162, 235, 0.2)',
+    //     'rgba(54, 162, 235, 0.2)'
+    //   ],
+    //   backgroundColor: [
+    //     'rgba(54, 162, 235, 0.2)',
+    //     'rgba(54, 162, 235, 0.2)',
+    //     'rgba(54, 162, 235, 0.2)',
+    //     'rgba(54, 162, 235, 0.2)',
+    //     'rgba(54, 162, 235, 0.2)'
+    //   ]
+    // }
+  ]
+}
+
+const options = {
+  title: {
+    display: true,
+    text: 'Bar Chart'
+  },
+  scales: {
+    yAxes: [
+      {
+        ticks: {
+          min: 0,
+          max: 6,
+          stepSize: 1
+        }
+      }
+    ]
+  }
+}
 
 const Dashboard = () => {
 
@@ -55,6 +121,10 @@ const Dashboard = () => {
               
                                 </div>
                                </div>
+                               
+                              
+                              
+                            
                         <div className="row m-0">
                       
                          
@@ -72,12 +142,15 @@ const Dashboard = () => {
                                   <div className="card-header">
                                     <h4 className="card-title text-center mb-md-0 mb-2">No.of Request</h4>
                                   </div>
+
+
+                              
+
                                 </div>
+                                
                                 <div className="col-xl-10 col-12 p-0">
-                                  <div className="card-content collapse show">
-                                    <div id="basic-column" className="height-400 echart-container"></div>
-                                    <h5 className="text-center">Months</h5>
-                                  </div>
+                                <Bar data={data} options={options}/>
+                                  
                                 </div>
                               </div>
                             </div>
