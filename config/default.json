@@ -1,5 +1,6 @@
 {
     "MongoURI" : "mongodb://localhost:27017/lug",
-    "jwtSecret":"jwtSecret"
+    "jwtSecret":"jwtSecret",
+    "privatekey":"AAAAP0yw0Ec:APA91bGXb7pyxP2kpowHrj1g7vQRHBNYrgxTvkCZMavPjVYgNcv8Lc8YD5Wv8q-AVoC94FU7_lWOp4uVdbhHJctuesyO_O7wk9YbEHMuWVOfOcBINl5i__R26gm-PW2Y5isutAJihKQJ"
     
 }

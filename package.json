@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "@sendgrid/mail": "^7.2.4",
+    "axios": "^0.20.0",
     "bcrypt": "^5.0.0",
     "concurrently": "^5.3.0",
     "config": "^3.3.1",
@@ -19,6 +20,8 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-validator": "^6.6.1",
+    "fcm-node": "^1.5.2",
+    "firebase-admin": "^9.2.0",
     "fs": "0.0.1-security",
     "is-base64": "^1.1.0",
     "joi": "^17.2.1",

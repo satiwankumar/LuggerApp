@@ -38,7 +38,23 @@ router.post('/',auth,async (req,res)=>{
 
         })
 
+        
         await report.save()
+        
+      //   const notification = {
+      //     notifiableId :null,
+      //     notificationType:"Admin",
+      //     notificationId:report._id,
+      //     title: "new user is report",
+      //     body:"User A has reported user B"
+
+          
+      // }
+      // CreateNotification(notification)
+        res.json({
+            "message":"your travel has been added",
+            "luuger":lugger
+        });
        return res.status(500).json({ message: "User has been reported" });
     
 

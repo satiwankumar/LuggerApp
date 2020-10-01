@@ -47,7 +47,7 @@ app.get("/uploads/images/:name", (req, res) => {
 
 
 app.get('/',(req,res)=>{
-    res.send('api runnning')
+    res.send('server runnning')
 })
 
 const PORT =  process.env.PORT || 5000

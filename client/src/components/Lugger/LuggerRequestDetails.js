@@ -193,8 +193,8 @@ const LuggerRequestDetails = ({ getLuggerById,UpdateluggerStatus,lugger:{lugger}
                                                               </div>
                                                               <div className="row mb-2">
                                                                          <div className="col-lg-12">
-                                                                          <button className={`cancel-button mr-3  `}  data-toggle="modal" data-target="#approvalmodal" >Approve</button>
-                                                                          <button className={`blocked-button      `}  data-toggle="modal" data-target="#rejectmodal">Reject</button>
+                                                                          <button className={`cancel-button mr-3 ${lugger.status ===0?'':"hidden"} `}  data-toggle="modal" data-target="#approvalmodal" >Approve</button>
+                                                                          <button className={`blocked-button   ${lugger.status ===0?'':"hidden"} `}  data-toggle="modal" data-target="#rejectmodal">Reject</button>
                                                                          </div>
                                                               </div>
                                                            

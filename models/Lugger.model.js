@@ -93,7 +93,10 @@ const LuggerSchema = new mongoose.Schema({
         }
     ],
     status: { type: Number, default: false },
-
+    landedTime :{
+            type:Date,
+            default:null
+    }
 
 
 });

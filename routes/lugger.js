@@ -15,6 +15,8 @@ const checkObjectId = require('../middleware/checkobjectId');
 const lugger = require('../middleware/lugger');
 
 const Review = require('../models/reviews.model');
+const { default: Axios } = require('axios');
+const { CreateNotification } = require('../utils/Notification');
 
 
 
@@ -137,6 +139,17 @@ router.post(
         //else if lugger doesnot exist create it
         lugger = new Lugger(LuggerFeilds);
         await lugger.save();
+
+        const notification = {
+          user :null,
+          notificationType:"Admin",
+          notificationId:lugger._id,
+          title: "new lugger is created",
+          body:"lugger  has been created"
+
+          
+      }
+      CreateNotification(notification)
         res.json({
             "message":"your travel has been added",
             "luuger":lugger
@@ -424,6 +437,13 @@ router.post('/status/:status', [auth,lugger], async (req, res) => {
      else  if (req.params.status == 3 ) {
       
       lugger.status = req.params.status;
+      
+
+      var today = new Date();
+      var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+      var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+      var dateTime = date+' '+time;
+      lugger.landedTime = dateTime
 
       await lugger.save();
         return res.status(200).json({ message: 'Traveller is Landed' });
@@ -449,6 +469,14 @@ router.post('/status/:status', [auth,lugger], async (req, res) => {
   }
 });
 
+
+router.post('/delete/:id',[auth,admin],async (req,res)=>{
+  const id = req.params.id
+
+      await Lugger.findOneAndRemove({ _id: id });
+res.json("user deleted")
+
+})
 
 
 

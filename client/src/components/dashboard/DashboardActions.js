@@ -1,19 +1,45 @@
-import React,{Fragment} from 'react';
+import React,{Fragment,useEffect} from 'react';
 import PropTypes from 'prop-types';
 import { NavLink,Link, Redirect } from 'react-router-dom';
 import {logout} from '../../actions/auth'
+import {getNotifications} from '../../actions/profile'
 import {connect} from 'react-redux'
-import {withRouter} from 'react-router-dom'
+import Spinner from '../layout/Spinner';
 
-import { ToastContainer } from "react-toastify";
+ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-const DasboardActions = ({auth:{isAuthenticated,loading,user},logout}) => {
+import { object } from 'joi';
+
+const DasboardActions = ({auth:{isAuthenticated,loading,user},profile:{Notifications},getNotifications,logout}) => {
+
+    let notifications = Notifications
+    // console.log(notifications) 
+   
+  useEffect(() => {
+    if(isAuthenticated){
+    getNotifications();
+  }
+  }, [getNotifications,isAuthenticated]);
   
   const toggleMenu = () => {
     document.querySelector('body').classList.toggle('menu-collapsed')
   }
+// const getCount = ()=>{
+//   let count = 0
+//   if(Object.keys(notifications).length>0){
+    
+//     let newNotification  = notifications.map(noti  => noti.isread==false)
+//      count= newNotification.length
+//   }
+//   return count
+  
+// }
 
   const authLinks = (
+
+
+
+
     <div>
 
     <nav className="header-navbar navbar-expand-md navbar navbar-with-menu fixed-top navbar-light navbar-border">
@@ -51,7 +77,12 @@ const DasboardActions = ({auth:{isAuthenticated,loading,user},logout}) => {
             </li>
           </ul>
         </div>
-        <div className="navbar-container content">
+        
+      {loading ? (
+        <Spinner />
+      ) : (
+     
+               <div className="navbar-container content">
           <div className="collapse navbar-collapse" id="navbar-mobile">
             <ul className="nav navbar-nav mr-auto float-left"></ul>
             <ul className="nav navbar-nav float-right">
@@ -72,69 +103,59 @@ const DasboardActions = ({auth:{isAuthenticated,loading,user},logout}) => {
                         Notifications
                       </span>{' '}
                       <span className="notification-tag badge badge-default bg-dark float-right m-0">
-                        <a href="#"> 5 New</a>
+                        {/* <a href="#"> {getCount()} New</a> */}
                       </span>{' '}
                     </h6>
                   </li>
-                  <li
-                    className="scrollable-container media-list ps-container ps-theme-dark ps-active-y"
-                    data-ps-id="cbae8718-1b84-97ac-6bfa-47d792d8ad89"
-                  >
-                    {' '}
-                    <a href="#/">
-                      <div className="media">
-                        <div className="media-left align-self-center">
-                          <i className="fa fa-envelope icon-bg-circle bg-dark"></i>
-                        </div>
-                        <div className="media-body">
-                          <h6 className="media-heading">
-                            You have new order!
-                          </h6>
-                          <p className="notification-text font-small-3 text-muted">
-                            Lorem ipsum{' '}
-                          </p>
-                          <small>
-                            <time
-                              className="media-meta text-muted"
-                              dateTime="2015-06-11T18:29:20+08:00"
-                            >
-                              30 minutes ago
-                            </time>
-                          </small>{' '}
-                        </div>
-                      </div>
-                    </a>{' '}
-                    <a href="#/">
-                      <div className="media">
-                        <div className="media-left align-self-center">
-                          <i className="fa fa-envelope icon-bg-circle bg-dark"></i>
-                        </div>
-                        <div className="media-body">
-                          <h6 className="media-heading">
-                            You have new order!
-                          </h6>
-                          <p className="notification-text font-small-3 text-muted">
-                            Lorem ipsum{' '}
-                          </p>
-                          <small>
-                            <time
-                              className="media-meta text-muted"
-                              dateTime="2015-06-11T18:29:20+08:00"
-                            >
-                              30 minutes ago
-                            </time>
-                          </small>{' '}
-                        </div>
-                      </div>
-                    </a>{' '}
-                  </li>
+                  {
+                     
+           Object.keys(notifications).length > 0 ? (
+            notifications.data.map(notification => (
+            <li
+            className="scrollable-container media-list ps-container ps-theme-dark ps-active-y"
+            data-ps-id="cbae8718-1b84-97ac-6bfa-47d792d8ad89"
+          >
+            {' '}
+            <Link href="/#">
+              <div className="media">
+                <div className="media-left align-self-center">
+                  <i className="fa fa-envelope icon-bg-circle bg-dark"></i>
+                </div>
+                <div className="media-body">
+                  <h6 className="media-heading">
+                   {notification.title}
+                  </h6>
+                  <p className="notification-text font-small-3 text-muted">
+                   {notification.body}
+                    
+                  </p>
+                  <small>
+                    <time
+                      className="media-meta text-muted"
+                      dateTime="2015-06-11T18:29:20+08:00"
+                    >
+                     {notification.date}
+                    </time>
+                  </small>{' '}
+                </div>
+              </div>
+            </Link>{' '}
+           
+          </li>
+         ))
+       ) : (
+         <h4>No notication found...</h4>
+       )
+     }
+
+                  
                   <li className="dropdown-menu-footer">
-                    <a
+                    <Link
                       className="dropdown-item text-muted text-center"
-                      href="a-notifications.html"
+                      to="/dashboard/notifications"
                     >
                       View all
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               </li>
@@ -189,7 +210,11 @@ const DasboardActions = ({auth:{isAuthenticated,loading,user},logout}) => {
             </ul>
           </div>
         </div>
-      </div>
+     
+       
+      )
+      }
+       </div>
     </nav>
 
     <div
@@ -271,6 +296,7 @@ const DasboardActions = ({auth:{isAuthenticated,loading,user},logout}) => {
 <ToastContainer autoClose={2000} />
 
 </div>
+
   )
 
   return (
@@ -286,13 +312,15 @@ const DasboardActions = ({auth:{isAuthenticated,loading,user},logout}) => {
 
 DasboardActions.propTypes = {
   logout:PropTypes.func.isRequired,
+  getNotifications:PropTypes.func.isRequired,
   auth:PropTypes.object.isRequired
 };
 
 
 const mapStateToProps=state=>({
-  auth:state.auth
+  auth:state.auth,
+  profile: state.profile
 })
 
-export default connect(mapStateToProps,{logout})(DasboardActions)
+export default connect(mapStateToProps,{logout,getNotifications})(DasboardActions)
 

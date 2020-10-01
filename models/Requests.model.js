@@ -9,8 +9,8 @@ const LugRequestSchema = new mongoose.Schema({
   firstName: { type: String, required: true },
   lastName: { type: String, required: true },
   luggageWeight: { type: String, required: true },
-  pickUpAddress: { type: String, required: true },
-  dropOffAddress: { type: String, required: true },
+  pickUpAddress: { type: String },
+  dropOffAddress: { type: String },
   images: { type: [String] },
   additionalNote: { type: String, required: true },
   status: { type: Number, default: false }

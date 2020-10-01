@@ -7,7 +7,7 @@ import {
   GET_USERS,
   PROFILE_ERROR,
   UPDATE_USER_STATUS,
-  CLEAR_PROFILE
+  CLEAR_PROFILE, GET_NOTIFICATIONS
 
 } from './types';
 
@@ -157,6 +157,27 @@ console.log(userId,status)
     dispatch({
       type: PROFILE_ERROR,
       // payload: { msg: err.response.statusText, status: err.response.status }
+    });
+  }
+};
+
+
+// Get all profiles
+export const getNotifications = (page) => async dispatch => {
+
+  try {
+    const res = await api.get(`/notifications/admin?page=${page}`);
+    console.log(res.data)
+    dispatch({
+      type: GET_NOTIFICATIONS,
+      payload: res.data
+    });
+  } catch (err) {
+    
+    dispatch({
+      type: PROFILE_ERROR,
+      // payload: { msg: err.response.statusText, status: err.response.status }
+      
     });
   }
 };

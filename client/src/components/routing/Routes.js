@@ -17,7 +17,7 @@ import LuggerRequestDetails from '../Lugger/LuggerRequestDetails';
 import editProfile from '../users/editProfile';
 import Reports from '../report/Reports';
 import reportDetails from '../report/reportDetails';
-
+import Notifications from '../dashboard/Notifications'
 
 const Routes = props => {
   return (
@@ -48,7 +48,9 @@ const Routes = props => {
 
         <PrivateRoute exact path="/report" component={Reports}/>
         <PrivateRoute exact path="/report/:id" component={reportDetails}/>
+
         
+        <PrivateRoute exact path="/dashboard/notifications" component={Notifications}/>
         
         
         

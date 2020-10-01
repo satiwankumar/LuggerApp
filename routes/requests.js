@@ -61,7 +61,7 @@ router.post(
         additionalNote,
       });
       // const lugger = new lugger.receivedRequests.userId = req.user._id
-       await lugger.save()
+      //  await lugger.save()
        await newRequest.save();
       
 
@@ -89,14 +89,15 @@ router.get('/getrequests', auth, async (req, res) => {
       'image'
     ]
   ).populate('lugger',[
-        
+        "user",
         "costPerKg",
         "airline",
         "flightNumber",
         "travelDate",
         "arrivalDate",
+        "landedTime"
     ]
-  )
+  ).populate()
 
     if (!requests.length) {
       return res

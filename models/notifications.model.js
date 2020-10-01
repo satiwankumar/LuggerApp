@@ -5,11 +5,16 @@ const user  =  require('../models/User.model')
 const NotificationSchema = new Schema ({
   
 
-user: {
+  notifiableId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: user
+        ref: user,
+        deafault:null
     },
-  
+    notificationType:{
+    type:String,
+    // required:true
+  }
+,
   title: {
     type: String,
     required: [true, 'Notfication Title']
@@ -22,8 +27,9 @@ user: {
     type: Date,
     default: Date.now,
   },
-  view: {
-    type: String
+  isread: {
+    type: Boolean,
+    default:false
     //TODO may have to require later when listener is added to pouchdb
   }
 

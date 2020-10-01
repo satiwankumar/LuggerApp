@@ -32,15 +32,14 @@ const App = () => {
       if (!localStorage.token) store.dispatch({ type: LOGOUT });
     });
   }, []);
+  
 
   return (
     <Provider store={store}>
       {/* <BrowserRouter basename="/lug_react"> */}
       <HashRouter>
         <Fragment>
-        {
-          <DashboardActions />
-}
+         <DashboardActions /> 
           <Switch>
             <Route exact path="/forgotpassword" component={ForgotPassword} />
             <Route exact path="/forgotcode" component={forgotCode} />

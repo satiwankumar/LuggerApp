@@ -5,7 +5,7 @@ import {
   GET_CURRENT_PROFILE,
   UPDATE_PROFILE,
   GET_USERS,
-  UPDATE_USER_STATUS
+  UPDATE_USER_STATUS,GET_NOTIFICATIONS
 
 } from '../actions/types';
 
@@ -13,6 +13,8 @@ const initialState = {
   currentProfile:null,
   profile: null,
   Users: [],
+  Notifications:{},
+  test:[],
   loading: true,
   error: {}
 };
@@ -40,6 +42,15 @@ export default function (state = initialState, action) {
         Users: payload,
         loading: false
       };
+      case GET_NOTIFICATIONS:
+        console("helloworld")
+        return {
+          
+          ...state,
+          Notifications: payload,
+          loading:false
+
+        };
     case PROFILE_ERROR:
       return {
         ...state,

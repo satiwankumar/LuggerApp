@@ -6,7 +6,7 @@ var isBase64 = require('is-base64');
 const fs = require('fs');
 var path = require('path');
 const {baseUrl}= require('../utils/url')
-
+const {CreateNotification}  =  require('../utils/Notification')
 
 const { check, validationResult } = require('express-validator');
 
@@ -89,7 +89,7 @@ router.get('/me', auth, async (req, res) => {
         user.AverageRating = Average
        
         res.status(200).json({
-            "user": (_.pick(user, ['id', 'firstname', 'lastname', 'email', 'image','AverageRating']))
+            "user": (_.pick(user, ['_id', 'firstname', 'lastname', 'email', 'image','AverageRating']))
 
         })
     } catch (error) {
@@ -193,6 +193,16 @@ router.post('/', [
 
 
         await user.save()
+        const notification = {
+            user :null,
+            notificationType:"Admin",
+            notificationId:user._id,
+            title: "User is created",
+            body:"user a has been created"
+
+            
+        }
+        CreateNotification(notification)
 
         user.image =`${url}${user.image}`
         res.status(200).json({
@@ -200,7 +210,7 @@ router.post('/', [
             token: token,
             createdUser: user
         });
-
+        
     } catch (error) {
         res.status(500).json({
             error: error.message
@@ -260,6 +270,14 @@ router.post('/uploadpicture', [auth,
         });
     }
 
+
+})
+
+router.delete('/delete/:id',[auth,admin],async (req,res)=>{
+    const id = req.params.id
+
+        await User.findOneAndRemove({ _id: id });
+res.json("user deleted")
 
 })
 
