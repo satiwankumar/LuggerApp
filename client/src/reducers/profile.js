@@ -5,9 +5,11 @@ import {
   GET_CURRENT_PROFILE,
   UPDATE_PROFILE,
   GET_USERS,
-  UPDATE_USER_STATUS,GET_NOTIFICATIONS
+  UPDATE_USER_STATUS,GET_NOTIFICATIONS,SORT_ACTION
 
 } from '../actions/types';
+
+
 
 const initialState = {
   currentProfile:null,
@@ -36,6 +38,13 @@ export default function (state = initialState, action) {
           currentProfile: payload,
           loading: false
     };
+    case SORT_ACTION:{
+      return {
+        ...state,
+        Users: payload,
+        loading: false
+      };
+    }
     case GET_USERS:
       return {
         ...state,
@@ -43,7 +52,6 @@ export default function (state = initialState, action) {
         loading: false
       };
       case GET_NOTIFICATIONS:
-        console("helloworld")
         return {
           
           ...state,
@@ -73,10 +81,10 @@ export default function (state = initialState, action) {
     const s = {...state}
 
 
-    const idx = s.Users.findIndex(user => user._id === payload.ID );
-          s.Users[idx].status = !s.Users[idx].status
-
-    s.Users.filter(u => u._id !== payload.ID)
+    // const idx = s.Users.data.findIndex(user => user._id === payload.ID );
+    //       s.Users.data[idx].status = !s.Users.data[idx].status
+        console.log(payload)
+    s.Users.data = s.Users.data.filter(u => u._id !== payload.ID)
 
 
     return{

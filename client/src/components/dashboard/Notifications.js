@@ -15,7 +15,7 @@ import "react-toastify/dist/ReactToastify.css";
 const Notifications = ({ getNotifications, profile: { Users, loading, Notifications }, history }) => {
 
 
-    const [notifications, setNotification] = useState({});
+    // const [notifications, setNotification] = useState({});
     //   const [UsersPerPage] = useState(5);
     const [page, setPage] = useState(1)
 
@@ -30,7 +30,7 @@ const Notifications = ({ getNotifications, profile: { Users, loading, Notificati
         // }
 
     }, [page]);
-
+ 
     const onPage = selectedPage => {
         alert(selectedPage)
         setPage(selectedPage.selected + 1)
@@ -42,18 +42,10 @@ const Notifications = ({ getNotifications, profile: { Users, loading, Notificati
         console.log(data)
         let selected = data.selected;
         setPage(selected);
-        // let offset = Math.ceil( selected * parseInt(Notifications.limit));
-        // console.log(offs0et)
-        // setPage({ offset: offset }, () => {
-        //   getNotifications();
-        // });
+       
     };
 
-    //   const indexOfLastPost = currentPage * UsersPerPage;
-    //   const indexOfFirstPost = indexOfLastPost - UsersPerPage;
-    //   const currentUsers = filterered.slice(indexOfFirstPost, indexOfLastPost);
-
-    //   const paginate = pageNumber => setCurrentPage(pageNumber);
+  
     return (
         <Fragment>
             {loading ? (

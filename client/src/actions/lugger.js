@@ -7,10 +7,48 @@ import {
     Get_LUGGER_DETAIL,
   Lugger_ERROR,
   UPDATE_LUGGER,
+  SORT_ACTION_LUGGER
 } from './types';
 
 
 
+
+// export const searchAction = (search) => async dispatch => {
+
+  
+//   try {
+//     const res = await api.get(`/lugger?fieldname=${fieldname}&order=${orderstate}`);
+
+//     dispatch({
+//       type: SORT_ACTION_LUGGER,
+//       payload: res.data
+//     });
+//   } catch (err) {
+//     dispatch({
+//       type: Lugger_ERROR,
+//       // payload: { msg: err.response.statusText, status: err.response.status }
+//     });
+//   }
+// };
+
+
+export const SortActionLugger = (fieldname,orderstate) => async dispatch => {
+
+ 
+  try {
+    const res = await api.get(`/lugger?fieldname=${fieldname}&order=${orderstate}`);
+
+    dispatch({
+      type: SORT_ACTION_LUGGER,
+      payload: res.data
+    });
+  } catch (err) {
+    dispatch({
+      type: Lugger_ERROR,
+      // payload: { msg: err.response.statusText, status: err.response.status }
+    });
+  }
+};
 
 // Get all Luggers
 export const getLuggers = () => async dispatch => {
@@ -85,7 +123,6 @@ export const getLuggerById = luggerId => async dispatch => {
     });
   }
 };
-
 
 
 

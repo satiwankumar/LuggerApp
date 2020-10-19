@@ -3,7 +3,7 @@ import {
     GET_LUGGERS,
     Get_LUGGER_DETAIL,
     UPDATE_LUGGER,
-    Lugger_ERROR
+    Lugger_ERROR,SORT_ACTION_LUGGER
   
   } from '../actions/types';
   
@@ -18,7 +18,15 @@ import {
     const { type, payload } = action;
   
     switch (type) {
-     
+     case SORT_ACTION_LUGGER:
+       return{
+      
+          ...state,
+          Luggers: payload,
+          loading: false
+    
+          
+       }
       case GET_LUGGERS:
         return {
           ...state,

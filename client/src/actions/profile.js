@@ -7,7 +7,7 @@ import {
   GET_USERS,
   PROFILE_ERROR,
   UPDATE_USER_STATUS,
-  CLEAR_PROFILE, GET_NOTIFICATIONS
+  CLEAR_PROFILE, GET_NOTIFICATIONS,SORT_ACTION
 
 } from './types';
 
@@ -28,12 +28,14 @@ export const getCurrentProfile = () => async dispatch => {
   }
 };
 
+
 // Get all profiles
-export const getUsers = () => async dispatch => {
+export const getUsers = (page,limit,selection) => async dispatch => {
   dispatch({ type: CLEAR_PROFILE });
 
   try {
-    const res = await api.get('/users');
+    const res = await api.get(`/users?page=${page}&limit=${limit}&selection=${selection}`);
+    console.log(res.data)
 
     dispatch({
       type: GET_USERS,
@@ -170,6 +172,27 @@ export const getNotifications = (page) => async dispatch => {
     console.log(res.data)
     dispatch({
       type: GET_NOTIFICATIONS,
+      payload: res.data
+    });
+  } catch (err) {
+    
+    dispatch({
+      type: PROFILE_ERROR,
+      // payload: { msg: err.response.statusText, status: err.response.status }
+      
+    });
+  }
+};
+
+//sortAction
+
+export const SortAction= (fieldname,orderstate) => async dispatch => {
+  // alert("called")
+  try {
+    const res = await api.get(`/users?fieldname=${fieldname}&order=${orderstate}`);
+    console.log(res.data)
+    dispatch({
+      type: SORT_ACTION,
       payload: res.data
     });
   } catch (err) {

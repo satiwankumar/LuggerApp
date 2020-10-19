@@ -3,12 +3,10 @@ import React, { Fragment, useEffect,useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Spinner from '../layout/Spinner';
-// import ProfileItem from './ProfileItem';
+import ReactPaginate from 'react-paginate';
 import { getUsers, UpdateUserStatus,SortAction } from '../../actions/profile';
-
 import UserItem from './userItem';
 import Pagination from '../paginate/paginate';
-
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -17,44 +15,48 @@ const Users = ({ getUsers,SortAction, UpdateUserStatus, profile: { Users, loadin
 
 
   const [currentID, setCurrentID] = useState('')
-  const [currentPage, setCurrentPage] = useState(1);
-  const [UsersPerPage] = useState(5);
   const [Selection, setSelection] = useState(1)
   const [blockStatus, setBlockStatus] = useState(1)
+  const [OrderState,setOrderState] = useState(1)
 
-    const filterered = Users.filter(user=>user.status === Selection)   
+  const [page, setPage] = useState(1)
+  const [limit,setlimit] = useState(5)
+     
 
    const blockToggleUser = (id,status) => {
      setCurrentID(id)
+    
      setBlockStatus(status)
 
      window.jQuery('#blockuser').modal('show');
    }
 
   useEffect(() => {
+// alert(page,limit,Selection)
+    getUsers(page,limit,Selection);
+  }, [getUsers,page,limit,Selection]);
 
-    getUsers(Selection);
-  }, [getUsers,Selection]);
 
-  const indexOfLastPost = currentPage * UsersPerPage;
-  const indexOfFirstPost = indexOfLastPost - UsersPerPage;
-  const currentUsers = filterered.slice(indexOfFirstPost, indexOfLastPost);
-
-  const [OrderState,setOrderState] = useState(1)
-  // const  Sorting= (fieldname)=>{
-  //     alert("called")
-  //     sortAction(fieldname)
-  //     // setOrderState(!OrderState) 
-      
-     
-  // }
+  
   const toggleOrder=()=>{
     const currentState = OrderState ===1?-1:1
       setOrderState(currentState)
       return OrderState
   }
-
-  const paginate = pageNumber => setCurrentPage(pageNumber);
+  const handleChange=(e)=> {
+    alert(e.target.value)
+    let value = e.target.value;
+    
+   setlimit(value)
+}
+const handlePageClick = (data) => {
+  
+    let selected = data.selected +1;
+    // console.log(selected)
+    setPage(selected);
+   
+};
+  // const paginate = pageNumber => setCurrentPage(pageNumber);
   return (
     <Fragment>
       {loading ? (
@@ -79,14 +81,19 @@ const Users = ({ getUsers,SortAction, UpdateUserStatus, profile: { Users, loadin
                                 <h1 className="u-m clr-blue ">Users </h1>
                               </div>
                               <div className="col-md-12 pull-right">
-                                <a
-                                  href="javascript:void(0)"
+                                <Link
+                                  to={`/${Selection}===1?"active":"blocked"`}
                                   className="primary-button pull-right"
                                   
-                                  onClick={(e)=>setSelection(Selection==0?1:0)}
+                                  onClick={(e)=>{
+                                    
+                                    setSelection(Selection==0?1:0)
+                                    // setPage('')
+                                    // setlimit('')
+                                  }}
                                 >
                                  {Selection==1? "Blocked Users":"Active Users"}
-                                </a>
+                                </Link>
                               </div>
                             </div>
 
@@ -109,6 +116,7 @@ const Users = ({ getUsers,SortAction, UpdateUserStatus, profile: { Users, loadin
             name="DataTables_Table_0_length"
             aria-controls="DataTables_Table_0"
             className="form-control form-control-sm"
+            onChange={(e) => handleChange(e)}
           >
             <option value={10}>10</option>
             <option value={25}>25</option>
@@ -233,82 +241,48 @@ const Users = ({ getUsers,SortAction, UpdateUserStatus, profile: { Users, loadin
           </tr>
         </thead>
         {
-          Users.length > 0 ? (
-           currentUsers.map((user,index) => (
+           Object.keys(Users).length > 0 ? (
+            Users.data.map((user,index) => (
            <UserItem key={user._id} blockToggle={blockToggleUser} user={user} index={index} selection={Selection}/>
          ))
        ) : (
          <h4>No User found...</h4>
        )
      }
-                           <Pagination
+                           {/* <Pagination
      ItemsPerPage={UsersPerPage}
      TotalItems={Users.length}
      paginate={paginate}
-   />
+   /> */}
       </table>
     </div>
   </div>
-  <div className="row">
-    <div className="col-sm-12 col-md-5">
-      <div
-        className="dataTables_info"
-        id="DataTables_Table_0_info"
-        role="status"
-        aria-live="polite"
-      >
-        Showing 1 to 3 of 3 entries
-      </div>
-    </div>
-    <div className="col-sm-12 col-md-7">
-      <div
-        className="dataTables_paginate paging_simple_numbers"
-        id="DataTables_Table_0_paginate"
-      >
-        <ul className="pagination">
-          <li
-            className="paginate_button page-item previous disabled"
-            id="DataTables_Table_0_previous"
-          >
-            <a
-              href="#"
-              aria-controls="DataTables_Table_0"
-              data-dt-idx={0}
-              tabIndex={0}
-              className="page-link"
-            >
-              Previous
-            </a>
-          </li>
-          <li className="paginate_button page-item active">
-            <a
-              href="#"
-              aria-controls="DataTables_Table_0"
-              data-dt-idx={1}
-              tabIndex={0}
-              className="page-link"
-            >
-              1
-            </a>
-          </li>
-          <li
-            className="paginate_button page-item next disabled"
-            id="DataTables_Table_0_next"
-          >
-            <a
-              href="#"
-              aria-controls="DataTables_Table_0"
-              data-dt-idx={2}
-              tabIndex={0}
-              className="page-link"
-            >
-              Next
-            </a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
+  <div class="col-12">
+                      <ul class="noti-pagination pagination pull-right">
+                                                        <ReactPaginate
+                                                            containerClassName="pagination"
+                                                            pageClassName="paginate_button page-item"
+                                                            pageLinkClassName="page-link"
+                                                            activeClassName="active"
+                                                            previousClassName="page-item previous"
+                                                            previousLinkClassName="page-link"
+                                                            nextClassName=" page-item next"
+                                                            nextLinkClassName="page-link"
+                                                            activeLinkClassName="active"
+                                                            previousLabel={'previous'}
+                                                            nextLabel={'next'}
+                                                            breakLabel={'...'}
+                                                            breakClassName={'break-me'}
+                                                            pageCount={Users.total}
+                                                            marginPagesDisplayed={2}
+                                                            pageRangeDisplayed={Users.perPage}
+                                                            onPageChange={handlePageClick}
+                                                            containerClassName={'pagination'}
+                                                            subContainerClassName={'pages pagination'}
+                                                            activeClassName={'active'}
+                                                        />
+                                                        </ul>
+                                                        </div>
 </div>
 </div>
 

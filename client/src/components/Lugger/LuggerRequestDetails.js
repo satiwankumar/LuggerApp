@@ -90,7 +90,7 @@ const LuggerRequestDetails = ({ getLuggerById,UpdateluggerStatus,lugger:{lugger}
                                                                 <div className="col-lg-3 align-self-center">
                                                                      
                                                                      <p className="field-desc">{lugger.from}</p>
-                                                                     <p className="field-desc">London</p>
+                                                                 
                                                                 </div>
                                                                 <div className="col-lg-3 align-self-center">
                                                                           <label for="">To</label>
@@ -98,7 +98,7 @@ const LuggerRequestDetails = ({ getLuggerById,UpdateluggerStatus,lugger:{lugger}
                                                                 <div className="col-lg-3 align-self-center">
                                                                
                                                                       <p className="field-desc">{lugger.to},</p>
-                                                                      <p className="field-desc">New York</p>
+                                                                    
                                                                 </div>
                                                               </div>
                                                               <div className="row mb-2">
@@ -289,7 +289,7 @@ const LuggerRequestDetails = ({ getLuggerById,UpdateluggerStatus,lugger:{lugger}
                                <img src="images/blockeduser.png" alt=""/>
                                <p className="mb-0">Are you sure you want to Reject?</p>
                            </div>
-                           <a  className="cancel-button go-live-btn" onClick={()=>UpdateluggerStatus(lugger._id,2,history)} > Yes</a>
+                           <a  className="cancel-button go-live-btn" href="#confirmmodal" onClick={()=>UpdateluggerStatus(lugger._id,2,history)} > Yes</a>
                            <Link to={`/lugger/${lugger._id}`} data-dismiss="modal" className="blocked-button"  >No</Link>  
                        </div>
                       </div>
